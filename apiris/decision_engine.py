@@ -8,7 +8,7 @@ from dataclasses import dataclass, field
 from typing import Any, Dict, Optional
 
 from .cache import ResponseCache
-from .config import apirisConfig
+from .config import ApirisConfig
 from .policy.policy_manager import PolicyManager
 
 

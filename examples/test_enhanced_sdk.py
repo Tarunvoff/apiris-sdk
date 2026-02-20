@@ -149,7 +149,7 @@ def test_scoring_transparency():
     
     try:
         from apiris.decision_engine import DecisionEngine
-        from apiris.config import apirisConfig
+        from apiris.config import ApirisConfig
         
         print("\n1. Testing scoring factors extraction...")
         config = ApirisConfig()
@@ -221,7 +221,7 @@ def test_deterministic_runtime():
     
     try:
         from apiris.decision_engine import DecisionEngine
-        from apiris.config import apirisConfig
+        from apiris.config import ApirisConfig
         
         print("\n1. Verifying decision engine methods...")
         config = ApirisConfig()

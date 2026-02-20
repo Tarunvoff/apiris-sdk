@@ -6,7 +6,7 @@
 
 **Apiris** (Contextual API Decision Lens) is an intelligent SDK that provides real-time decision intelligence for API traffic. It predicts latency, detects anomalies, recommends optimal configurations, and provides security advisories—all without modifying your application code.
 
-## 🎯 What is Apiris?
+## What is Apiris?
 
 Apiris sits between your application and external APIs, observing request patterns and providing actionable intelligence:
 
@@ -25,7 +25,7 @@ Apiris sits between your application and external APIs, observing request patter
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Installation
 
@@ -65,7 +65,7 @@ Apiris policy validate config.yaml
 
 ---
 
-## 📊 How It Works
+## How It Works
 
 Apiris employs a **four-stage intelligence pipeline** that processes every API request:
 
@@ -171,7 +171,7 @@ risk_level = classify(advisory_score, cve_count)
 
 ---
 
-## 🛠️ Core Features
+## Core Features
 
 ### 1. Smart Request Interception
 
@@ -192,13 +192,13 @@ response = client.post(
 ```
 
 **What happens behind the scenes**:
-1. ✅ Predict latency before request
-2. ✅ Check cache for recent identical requests
-3. ✅ Execute request with optimal timeout
-4. ✅ Detect anomalies in response
-5. ✅ Analyze cost-performance trade-offs
-6. ✅ Store metrics for model improvement
-7. ✅ Provide explainable decision log
+1. Predict latency before request
+2. Check cache for recent identical requests
+3. Execute request with optimal timeout
+4. Detect anomalies in response
+5. Analyze cost-performance trade-offs
+6. Store metrics for model improvement
+7. Provide explainable decision log
 
 ---
 
@@ -290,7 +290,7 @@ CVE Advisory:
 
 ---
 
-## 📈 Feature Engineering Details
+## Feature Engineering Details
 
 ### Latency Prediction Features
 
@@ -323,7 +323,7 @@ CVE Advisory:
 
 ---
 
-## 🔐 Security Advisory (CVE Database)
+## Security Advisory (CVE Database)
 
 Apiris includes a comprehensive CVE database covering **136 API vendors**:
 
@@ -358,7 +358,7 @@ Apiris includes a comprehensive CVE database covering **136 API vendors**:
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -412,7 +412,7 @@ Apiris includes a comprehensive CVE database covering **136 API vendors**:
 
 ---
 
-## 📦 Installation & Configuration
+## Installation & Configuration
 
 ### Requirements
 
@@ -473,7 +473,7 @@ client = create_client(config_path="./config.yaml")
 
 ---
 
-## 🧪 Testing & Validation
+## Testing & Validation
 
 ### Run Tests
 
@@ -497,7 +497,7 @@ Apiris cve --validate
 
 ---
 
-## 📊 Performance Benchmarks
+## Performance Benchmarks
 
 ### Prediction Accuracy
 
@@ -528,7 +528,7 @@ Apiris cve --validate
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
@@ -544,13 +544,13 @@ pip install -e ".[dev]"
 
 ---
 
-## 📄 License
+## License
 
 MIT License - see [LICENSE](LICENSE) file for details.
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **CVE Data**: GitHub Security Advisory Database
 - **Algorithms**: Isolation Forest (scikit-learn), Exponential Smoothing
@@ -558,7 +558,7 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ---
 
-## 📞 Support
+## Support
 
 - **Documentation**: [https://apiris.readthedocs.io](https://apiris.readthedocs.io)
 - **Issues**: [GitHub Issues](https://github.com/yourusername/Apiris/issues)
@@ -567,7 +567,7 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ---
 
-## 🗺️ Roadmap
+## Roadmap
 
 ### v1.1 (Q2 2026)
 - [ ] Real-time streaming support (SSE, WebSockets)
@@ -586,4 +586,4 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ---
 
-**Made with ❤️ for developers who care about API performance and security**
+**Made with care for developers who care about API performance and security**

@@ -38,7 +38,7 @@ def version():
     """
     console.print(f"[bold cyan]Apiris SDK[/bold cyan] version [bold green]1.0.0[/bold green]")
     console.print("Deterministic AI Reliability Intelligence")
-    console.print("https://github.com/Tarunvoff/CAI-LENS")
+    console.print("https://github.com/Tarunvoff/apiris-sdk")
 
 
 @app.command()

@@ -10,7 +10,7 @@ from apiris.policy.policy_loader import PolicyLoader
 from apiris.policy.policy_manager import PolicyManager
 from apiris.storage.sqlite_store import SQLiteStore
 from apiris import CADClient
-from apiris.config import apirisConfig
+from apiris.config import ApirisConfig
 from apiris.decision_engine import DecisionEngine
 
 

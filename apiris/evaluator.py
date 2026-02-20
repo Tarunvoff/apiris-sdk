@@ -6,7 +6,7 @@ import time
 import uuid
 from typing import Any, Dict, Optional, Tuple
 
-from .config import apirisConfig
+from .config import ApirisConfig
 from .ai.anomaly_model import AnomalyScorer
 
 
