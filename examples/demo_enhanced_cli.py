@@ -86,10 +86,10 @@ def main():
     print("Using the enhanced SDK programmatically in Python\n")
     
     demo_code = '''
-from apiris.client import CADClient
+from apiris.client import ApirisClient
 
 # Initialize client (CVE system loaded automatically)
-client = CADClient(config_path="config.yaml")
+client = ApirisClient(config_path="config.yaml")
 
 # Make request (would work with valid API)
 # response = client.get("https://api.openai.com/v1/models")
@@ -142,3 +142,4 @@ if client.cve_system.enabled:
 
 if __name__ == "__main__":
     main()
+

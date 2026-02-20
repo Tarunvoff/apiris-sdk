@@ -18,10 +18,10 @@ from rich.progress import Progress, BarColumn, TextColumn
 from rich.tree import Tree
 from rich import box
 
-from .client import CADClient
+from .client import ApirisClient
 from .config import load_config
 
-__version__ = "1.0.1"
+__version__ = "1.0.0"
 
 def get_package_models_dir() -> Path:
     """Get the models directory from the installed package."""
@@ -68,7 +68,7 @@ def check(
         
         # Initialize client
         with console.status("[bold green]Initializing Apiris client...", spinner="dots"):
-            client = CADClient(config_path=config_path, policy_path=policy)
+            client = ApirisClient(config_path=config_path, policy_path=policy)
         
         # Make request
         with console.status(f"[bold green]Checking {url}...", spinner="dots"):

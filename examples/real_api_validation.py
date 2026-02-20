@@ -11,7 +11,7 @@ from urllib.parse import urlparse
 
 import requests
 
-from apiris import CADClient
+from apiris import ApirisClient
 from apiris.logging import append_jsonl
 
 
@@ -123,7 +123,7 @@ def _apply_stress(response: dict, stress_integrity: bool, stress_availability: b
 
 
 def _evaluate_with_client(
-    client: CADClient,
+    client: ApirisClient,
     url: str,
     stress_latency: bool,
     stress_integrity: bool,
@@ -305,7 +305,7 @@ def main() -> int:
     for mode, enable_ai in mode_matrix:
         print(f"\n=== Mode: {mode} | AI: {enable_ai} ===")
         config_path = _write_config(mode, enable_ai, repo_root)
-        client = CADClient(config_path=str(config_path))
+        client = ApirisClient(config_path=str(config_path))
 
         baselines: Dict[str, int] = {}
         for label, url in API_TARGETS:
@@ -372,3 +372,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+

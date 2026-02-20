@@ -9,7 +9,7 @@ from apiris.intelligence.vendor_profile import VendorProfileBuilder
 from apiris.policy.policy_loader import PolicyLoader
 from apiris.policy.policy_manager import PolicyManager
 from apiris.storage.sqlite_store import SQLiteStore
-from apiris import CADClient
+from apiris import ApirisClient
 from apiris.config import ApirisConfig
 from apiris.decision_engine import DecisionEngine
 
@@ -177,7 +177,7 @@ def test_runtime_unaffected_by_intelligence_failure(tmp_path: Path, monkeypatch)
 
     with responses.RequestsMock() as mock:
         mock.add(responses.GET, "https://example.com", json={"ok": True}, status=200)
-        client = CADClient(config_path=str(config_path))
+        client = ApirisClient(config_path=str(config_path))
         response = client.get("https://example.com")
 
     assert response.decision.action == "pass_through"
@@ -205,7 +205,7 @@ def test_policy_load_failure_falls_back_to_defaults(tmp_path: Path) -> None:
 
     with responses.RequestsMock() as mock:
         mock.add(responses.GET, "https://example.com", json={"ok": True}, status=200)
-        client = CADClient(config_path=str(config_path), policy_path=str(policy_path))
+        client = ApirisClient(config_path=str(config_path), policy_path=str(policy_path))
         response = client.get("https://example.com")
 
     assert response.decision.action == "pass_through"
@@ -253,3 +253,4 @@ def test_drift_analyzer_does_not_mutate_thresholds(tmp_path: Path) -> None:
 
     assert engine.config.integrity_threshold == 0.5
     assert engine.config.availability_threshold == 0.6
+

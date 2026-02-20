@@ -1,5 +1,5 @@
 """Apiris runtime package."""
 
-from .client import CADClient
+from .client import ApirisClient
 
-__all__ = ["CADClient"]
+__all__ = ["ApirisClient"]

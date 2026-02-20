@@ -3,7 +3,7 @@ from pathlib import Path
 
 import responses
 
-from apiris import CADClient
+from apiris import ApirisClient
 
 
 NASA_URL = "https://api.nasa.gov/planetary/apod?api_key=Y8J2mcPKdhjVjUSSYdSGkjuXkaAouZrd6mIE6yYC"
@@ -50,7 +50,7 @@ def test_clean_pass_through(tmp_path: Path):
         status=200,
     )
 
-    client = CADClient(config_path=str(config_path))
+    client = ApirisClient(config_path=str(config_path))
     response = client.get(NASA_URL)
 
     assert response.data == {"status": "ok"}
@@ -70,7 +70,7 @@ def test_integrity_violation(tmp_path: Path):
     responses.add(responses.GET, MARKETS_URL, json=[{"id": "btc", "current_price": 2}], status=200)
     responses.add(responses.GET, SIMPLE_URL, json={"btc": {"usd": 3}, "eth": {"usd": 4}}, status=200)
 
-    client = CADClient(config_path=str(config_path))
+    client = ApirisClient(config_path=str(config_path))
     client.get(SIMPLE_URL)
     client.get(MARKETS_URL)
     response = client.get(SIMPLE_URL)
@@ -86,7 +86,7 @@ def test_strict_mode_enforcement(tmp_path: Path):
     responses.add(responses.GET, STRICT_URL, json={"ok": True}, status=500)
     responses.add(responses.GET, STRICT_URL, json={"ok": False, "reason": "drift"}, status=500)
 
-    client = CADClient(config_path=str(config_path))
+    client = ApirisClient(config_path=str(config_path))
     client.get(STRICT_URL)
     response = client.get(STRICT_URL)
 
@@ -99,7 +99,7 @@ def test_ai_disabled_mode(tmp_path: Path):
     config_path = write_config(tmp_path, enable_ai=False)
     responses.add(responses.GET, NASA_URL, json={"ok": True}, status=200)
 
-    client = CADClient(config_path=str(config_path))
+    client = ApirisClient(config_path=str(config_path))
     client.get(NASA_URL)
 
     log_path = Path(tmp_path / "runtime" / "logs" / "cad_decisions.jsonl")
@@ -119,7 +119,7 @@ def test_logging_integrity(tmp_path: Path):
     config_path = write_config(tmp_path, enable_ai=True, models_dir=str(repo_root / "models"))
     responses.add(responses.GET, NASA_URL, json={"ok": True}, status=200)
 
-    client = CADClient(config_path=str(config_path))
+    client = ApirisClient(config_path=str(config_path))
     client.get(NASA_URL)
 
     log_dir = Path(tmp_path / "runtime" / "logs")
@@ -150,10 +150,11 @@ if __name__ == "__main__":
                 status=200,
             )
 
-            client = CADClient(config_path=str(config_path))
+            client = ApirisClient(config_path=str(config_path))
             result = client.get("https://api.nasa.gov/planetary/apod?api_key=Y8J2mcPKdhjVjUSSYdSGkjuXkaAouZrd6mIE6yYC")
 
             print(result.data)
             print(result.cad_summary)
             print(result.decision)
             print(result.confidence)
+

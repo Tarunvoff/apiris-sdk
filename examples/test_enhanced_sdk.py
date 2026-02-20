@@ -15,7 +15,7 @@ from pathlib import Path
 # Add parent directory to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from apiris.client import CADClient
+from apiris.client import ApirisClient
 from apiris.config import load_config
 from apiris.intelligence.cve_advisory import CVEAdvisorySystem
 
@@ -29,7 +29,7 @@ def test_backward_compatibility():
     try:
         # Test 1: Basic client initialization (no changes)
         print("\n1. Testing basic client initialization...")
-        client = CADClient(config_path="config.yaml")
+        client = ApirisClient(config_path="config.yaml")
         print("   ✓ Client initialized successfully")
         
         # Test 2: Check that all original attributes exist
@@ -387,3 +387,4 @@ def main():
 
 if __name__ == "__main__":
     sys.exit(main())
+

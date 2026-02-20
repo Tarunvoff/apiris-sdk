@@ -30,37 +30,36 @@ Apiris sits between your application and external APIs, observing request patter
 ### Installation
 
 ```bash
-pip install Apiris
+pip install apiris
 ```
 
 ### Basic Usage
 
 ```python
-from Apiris import create_client
+from apiris import ApirisClient
 
 # Create an intelligent API client
-client = create_client()
+client = ApirisClient()
 
 # Make requests as usual - Apiris handles everything
 response = client.get("https://api.openai.com/v1/models")
 
 # Access decision intelligence
-decision = client.get_last_decision()
-print(f"Predicted latency: {decision.predicted_latency}ms")
-print(f"Anomaly score: {decision.anomaly_score}")
-print(f"Recommendation: {decision.recommendation}")
+print(f"Predicted latency: {response.cad_summary.cad_scores}")
+print(f"Decision: {response.decision.action}")
+print(f"Confidence: {response.confidence}")
 ```
 
 ### CLI Usage
 
 ```bash
 # Check CVE vulnerabilities for any API vendor
-Apiris cve openai
-Apiris cve aws
-Apiris cve stripe
+apiris cve openai
+apiris cve aws
+apiris cve stripe
 
 # Validate policy configurations
-Apiris policy validate config.yaml
+apiris policy validate config.yaml
 ```
 
 ---
@@ -176,9 +175,9 @@ risk_level = classify(advisory_score, cve_count)
 ### 1. Smart Request Interception
 
 ```python
-from Apiris import create_client
+from apiris import ApirisClient
 
-client = create_client(config={
+client = ApirisClient(config={
     "ai_enabled": True,
     "cache_enabled": True,
     "anomaly_detection": True
@@ -423,7 +422,7 @@ Apiris includes a comprehensive CVE database covering **136 API vendors**:
 ### Install from PyPI
 
 ```bash
-pip install Apiris
+pip install apiris
 ```
 
 ### Install from Source
@@ -466,9 +465,9 @@ logging:
 Load configuration:
 
 ```python
-from Apiris import create_client
+from apiris import ApirisClient
 
-client = create_client(config_path="./config.yaml")
+client = ApirisClient(config_path="./config.yaml")
 ```
 
 ---
@@ -491,8 +490,8 @@ pytest --cov=Apiris tests/
 ### Validate CVE Data
 
 ```bash
-Apiris cve --list-vendors
-Apiris cve --validate
+apiris cve --list-vendors
+apiris cve --validate
 ```
 
 ---
@@ -587,3 +586,4 @@ MIT License - see [LICENSE](LICENSE) file for details.
 ---
 
 **Made with care for developers who care about API performance and security**
+

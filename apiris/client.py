@@ -21,14 +21,14 @@ from .intelligence.cve_advisory import CVEAdvisorySystem, CVEAdvisory
 
 
 @dataclass
-class CADDecision:
+class ApirisDecision:
     action: str
     tradeoff: str
     confidence: float
 
 
 @dataclass
-class CADSummary:
+class ApirisSummary:
     cad_scores: Dict[str, float]
     mode: str
     action: str
@@ -36,10 +36,10 @@ class CADSummary:
 
 
 @dataclass
-class CADResponse:
+class ApirisResponse:
     data: Any
-    cad_summary: CADSummary
-    decision: CADDecision
+    cad_summary: ApirisSummary
+    decision: ApirisDecision
     confidence: float
     status_code: Optional[int]
     headers: Dict[str, Any]
@@ -48,7 +48,7 @@ class CADResponse:
     cve_advisory: Optional[CVEAdvisory] = None
 
 
-class CADClient:
+class ApirisClient:
     def __init__(self, config_path: str = "config.yaml", policy_path: Optional[str] = None) -> None:
         self.config = load_config(config_path)
         self.session = requests.Session()
@@ -85,7 +85,7 @@ class CADClient:
             "anomalies": f"{self.config.log_dir}/cad_anomalies.jsonl",
         }
 
-    def get(self, url: str, params: Optional[Dict[str, Any]] = None, headers: Optional[Dict[str, str]] = None, timeout: float = 5.0) -> CADResponse:
+    def get(self, url: str, params: Optional[Dict[str, Any]] = None, headers: Optional[Dict[str, str]] = None, timeout: float = 5.0) -> ApirisResponse:
         request_id = uuid.uuid4().hex
         started_at = time.time()
         parsed_url = urlparse(url)
@@ -205,14 +205,14 @@ class CADClient:
 
         response_data = parsed_body if parsed_body is not None else raw_text
 
-        cad_summary = CADSummary(
+        cad_summary = ApirisSummary(
             cad_scores=cad_scores,
             mode=self.config.mode,
             action=decision_payload["action"],
             tradeoff=decision_payload["tradeoff"],
         )
 
-        cad_decision = CADDecision(**decision_payload)
+        cad_decision = ApirisDecision(**decision_payload)
         
         # Get scoring factors for transparency
         scoring_factors = decision.get("scoring_factors")
@@ -224,7 +224,7 @@ class CADClient:
             if vendor:
                 cve_advisory = self.cve_system.get_advisory(vendor)
 
-        return CADResponse(
+        return ApirisResponse(
             data=response_data,
             cad_summary=cad_summary,
             decision=cad_decision,
