@@ -13,7 +13,7 @@ Apiris sits between your application and external APIs, observing request patter
 - **Predict** API response times before making requests
 - **Detect** anomalous behavior in real-time
 - **Optimize** cost-performance tradeoffs automatically
-- **Advise** on security vulnerabilities (CVE database for 136+ API vendors)
+- **Advise** on security vulnerabilities (CVE database for 47 API vendors with 65 real CVEs)
 - **Explain** every decision with human-readable insights
 
 ### Key Differentiators
@@ -146,12 +146,19 @@ utility_score = w₁ × (1 - normalized_latency) +
 
 **Data Source**: GitHub Security Advisory Database
 
-**Coverage**: 136 third-party API vendors including:
-- AI APIs (OpenAI, Anthropic, Cohere, Hugging Face)
-- Cloud Platforms (AWS, Azure, Google Cloud)
-- Payment APIs (Stripe, PayPal, Square)
-- Communication APIs (Twilio, SendGrid, Slack)
-- DevOps Tools (GitHub, GitLab, Jenkins)
+**Coverage**: 47 third-party API packages including:
+- **Authentication**: auth0, jsonwebtoken, keycloak-connect, clerk, passport, bcrypt, argon2
+- **Databases**: mongodb, mongoose, redis, pg, mysql2, elasticsearch, prisma
+- **Frameworks**: express, fastapi, django, flask, rails, laravel, strapi, ghost
+- **HTTP Clients**: axios, node-fetch, superagent, request, got
+- **AI/ML**: langchain (OpenAI/Anthropic wrapper library)
+- **Real-time**: socket.io, ws
+- **GraphQL**: graphql, apollo-server
+- **Cloud SDKs**: aws-sdk, azure
+- **Security**: helmet, cors
+- **Developer Tools**: github, octokit, sentry-sdk, dotenv, pino, winston, nconf
+- **CMS**: wordpress, drupal
+- **Media**: cloudinary
 
 **Features Considered**:
 - CVE severity (CRITICAL, HIGH, MEDIUM, LOW)
@@ -324,40 +331,49 @@ CVE Advisory:
 
 ## Security Advisory (CVE Database)
 
-Apiris includes a comprehensive CVE database covering **136 API vendors**:
+Apiris includes a comprehensive CVE database covering **47 API vendors with 65 real vulnerabilities**:
 
 ### Coverage by Category
 
 | Category | Vendors | CVEs Found |
 |----------|---------|------------|
-| AI/ML APIs | 7 | 2 |
-| Cloud Platforms | 9 | 3 |
-| Payment APIs | 10 | 0 |
-| Communication APIs | 10 | 0 |
-| Auth & Identity | 8 | 0 |
-| DevOps & CI/CD | 10 | 2 |
-| Hosting & Deployment | 9 | 2 |
-| Monitoring | 10 | 0 |
-| Databases | 9 | 0 |
-| E-commerce & CMS | 8 | 4 |
+| Authentication & Security | 7 | 10 (auth0, jsonwebtoken, passport, bcrypt, helmet, cors, argon2) |
+| Databases & ORMs | 6 | 10 (mysql2, mongodb, mongoose, redis, elasticsearch, prisma) |
+| Web Frameworks | 6 | 8 (express, fastapi, django, flask, rails, laravel) |
+| HTTP Clients | 5 | 5 (axios, node-fetch, superagent, request, got) |
+| AI/ML Libraries | 1 | 3 (langchain) |
+| CMS Platforms | 3 | 7 (strapi, wordpress, drupal, ghost) |
+| Real-time Communication | 2 | 2 (socket.io, ws) |
+| Cloud SDKs | 2 | 3 (aws-sdk, azure) |
+| GraphQL | 2 | 2 (graphql, apollo-server) |
+| Developer Tools | 7 | 8 (github, octokit, sentry-sdk, dotenv, pino, winston, nconf) |
+| Media & Storage | 1 | 1 (cloudinary) |
+| Auth Services | 2 | 2 (keycloak-connect, clerk) |
 
 ### Real CVE Examples
 
-**OpenAI** (HIGH severity):
-- CVE-2025-68665: langchain serialization injection (CVSS 8.6)
+**LangChain** (2 CRITICAL, 1 HIGH):
+- CVE-2025-68665: Serialization injection (CVSS 8.6)
+- CVE-2023-36258: Arbitrary code execution (CVSS 9.8)
+- CVE-2023-32785: SQL Injection (CVSS 9.8)
 
-**Anthropic** (CRITICAL severity):
-- CVE-2026-26980: SQL injection in Content API (CVSS 9.4)
+**MySQL2** (2 CRITICAL, 1 HIGH):
+- Multiple critical SQL injection vulnerabilities
 
-**AWS** (CRITICAL severity):
-- GHSA-fhvm-j76f-qm: Authorization bypass (CVSS 9.5)
+**Strapi CMS** (1 CRITICAL, 2 HIGH):
+- CVE-2023-48711: Authorization bypass (CVSS 9.8)
 
-**GitHub** (9 CRITICAL, 1 HIGH):
-- Multiple high-severity vulnerabilities tracked
+**Drupal** (CRITICAL):
+- CVE-2023-25569: REST module remote code execution (CVSS 9.8)
+
+**Passport** (CRITICAL):
+- CVE-2022-25896: Session fixation vulnerability (CVSS 9.8)
 
 ---
 
 ## Architecture
+
+### High-Level SDK Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -366,8 +382,18 @@ Apiris includes a comprehensive CVE database covering **136 API vendors**:
                             │
                             ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                    Apiris Client API                        │
-│  (Drop-in replacement for requests/httpx)                    │
+│                    ApirisClient (client.py)                  │
+│  • Drop-in replacement for requests library                  │
+│  • Request/response interception                            │
+│  • Decision intelligence orchestration                       │
+└─────────────────────────────────────────────────────────────┘
+                            │
+                            ▼
+┌─────────────────────────────────────────────────────────────┐
+│                Interceptor (interceptor.py)                  │
+│  • Pre-request hooks (prediction, cache lookup)              │
+│  • Post-response hooks (anomaly detection, storage)          │
+│  • Middleware pipeline management                           │
 └─────────────────────────────────────────────────────────────┘
                             │
         ┌───────────────────┼───────────────────┐
@@ -376,30 +402,36 @@ Apiris includes a comprehensive CVE database covering **136 API vendors**:
 │  Predictive  │  │   Anomaly    │  │  Trade-off   │
 │    Model     │  │  Detection   │  │   Analysis   │
 │              │  │              │  │              │
-│ • Latency    │  │ • Isolation  │  │ • Cost vs    │
-│   Forecast   │  │   Forest     │  │   Latency    │
-│ • EWMA       │  │ • Z-Score    │  │ • Cache ROI  │
-│ • Regression │  │ • IQR        │  │ • Priority   │
+│(predictive_  │  │(anomaly_     │  │(tradeoff_    │
+│ model.py)    │  │ model.py)    │  │ model.py)    │
+│              │  │              │  │              │
+│• EWMA        │  │• Isolation   │  │• Cost vs     │
+│• Regression  │  │  Forest      │  │  Latency     │
+│• Time-series │  │• Z-Score     │  │• Cache ROI   │
 └──────────────┘  └──────────────┘  └──────────────┘
         │                   │                   │
         └───────────────────┼───────────────────┘
                             ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                    Decision Engine                           │
-│  • Combines all intelligence sources                         │
-│  • Applies policy rules                                      │
-│  • Generates explanations                                    │
+│              Decision Engine (decision_engine.py)            │
+│  • Aggregates intelligence from all models                   │
+│  • Applies policy rules and constraints                      │
+│  • Generates actionable recommendations                      │
+│  • Produces human-readable explanations                      │
 └─────────────────────────────────────────────────────────────┘
                             │
         ┌───────────────────┼───────────────────┐
         ▼                   ▼                   ▼
 ┌──────────────┐  ┌──────────────┐  ┌──────────────┐
 │  CVE Advisory│  │    Cache     │  │   Storage    │
-│   System     │  │   Manager    │  │   (SQLite)   │
+│   System     │  │   Manager    │  │   Layer      │
 │              │  │              │  │              │
-│ • 136 vendors│  │ • TTL-based  │  │ • Metrics    │
-│ • 26 CVEs    │  │ • LRU evict  │  │ • History    │
-│ • Real-time  │  │ • Hit rate   │  │ • Decisions  │
+│(cve_advisory │  │(cache.py)    │  │(sqlite_store │
+│ .py)         │  │              │  │ .py)         │
+│              │  │              │  │              │
+│• 47 vendors  │  │• TTL-based   │  │• Metrics     │
+│• 65 real CVEs│  │• LRU evict   │  │• History     │
+│• GHSA data   │  │• Hit rate    │  │• Decisions   │
 └──────────────┘  └──────────────┘  └──────────────┘
                             │
                             ▼
@@ -407,6 +439,148 @@ Apiris includes a comprehensive CVE database covering **136 API vendors**:
 │                    External APIs                             │
 │  (OpenAI, Anthropic, AWS, Stripe, etc.)                      │
 └─────────────────────────────────────────────────────────────┘
+```
+
+### Component Breakdown
+
+#### Core Layer
+- **`client.py`** - Main API client interface
+  - Implements `get()`, `post()`, `put()`, `delete()` methods
+  - Orchestrates the decision intelligence pipeline
+  - Provides access to decision summaries and explanations
+
+- **`interceptor.py`** - Request/response middleware
+  - Pre-request: prediction, cache lookup, CVE advisory
+  - Post-response: anomaly detection, metrics collection, storage
+  - Non-blocking, advisory-only execution model
+
+- **`decision_engine.py`** - Intelligence aggregation
+  - Combines outputs from all AI models
+  - Applies policy-based constraints
+  - Generates confidence scores and recommendations
+
+#### Intelligence Layer
+- **`ai/predictive_model.py`** - Latency forecasting
+  - Exponential weighted moving average (EWMA)
+  - Linear regression on request features
+  - Time-series pattern analysis
+
+- **`ai/anomaly_model.py`** - Behavioral analysis
+  - Isolation Forest algorithm
+  - Statistical outlier detection (z-score, IQR)
+  - Pattern deviation scoring
+
+- **`ai/tradeoff_model.py`** - Cost-performance optimization
+  - Multi-objective Pareto analysis
+  - Cache benefit calculation
+  - Retry & timeout recommendations
+
+#### Support Layer
+- **`intelligence/cve_advisory.py`** - Security intelligence
+  - Offline CVE database (47 vendors, 65 CVEs)
+  - Severity-based risk scoring
+  - GitHub Security Advisory integration
+
+- **`cache.py`** - Response caching
+  - TTL-based expiration
+  - LRU eviction policy
+  - Cache hit rate tracking
+
+- **`storage/sqlite_store.py`** - Persistent storage
+  - Request/response metrics
+  - Decision history
+  - Model training data
+
+- **`policy/policy_manager.py`** - Configuration management
+  - YAML-based policy loading
+  - Endpoint-specific rules
+  - Dynamic threshold adjustment
+
+#### Interface Layer
+- **`cli.py`** - Command-line interface
+  - CVE lookup commands
+  - Policy validation
+  - Status & diagnostics
+
+- **`config.py`** - Configuration loading
+  - YAML/JSON config parsing
+  - Environment variable support
+  - Default value management
+
+### Data Flow
+
+```
+1. Application calls client.get(url, ...)
+                ↓
+2. Interceptor pre-request hooks:
+   - Load policy for endpoint
+   - Predict latency (predictive_model)
+   - Check cache (cache.py)
+   - Query CVE advisory (cve_advisory.py)
+                ↓
+3. Decision Engine evaluates:
+   - Should use cache? (hit + fresh)
+   - Apply timeout? (predicted latency + buffer)
+   - Issue warning? (CVE risk level)
+                ↓
+4. Execute HTTP request (requests library)
+                ↓
+5. Interceptor post-response hooks:
+   - Detect anomalies (anomaly_model)
+   - Calculate trade-offs (tradeoff_model)
+   - Store metrics (sqlite_store)
+   - Update cache (cache.py)
+                ↓
+6. Decision Engine generates:
+   - Final decision (PROCEED/WARNED/BLOCKED)
+   - Explanation text
+   - Recommendations
+                ↓
+7. Return enhanced response to application
+```
+
+### Design Patterns
+
+- **Strategy Pattern**: Pluggable AI models (predictive, anomaly, tradeoff)
+- **Decorator Pattern**: Request/response interception without code changes
+- **Observer Pattern**: Post-request metric collection and storage
+- **Factory Pattern**: Configuration-based client instantiation
+- **Singleton Pattern**: Shared cache and storage instances
+
+### Module Organization
+
+```
+apiris/
+├── client.py              # Main API client
+├── interceptor.py         # Request/response middleware
+├── decision_engine.py     # Intelligence aggregation
+├── evaluator.py          # Decision evaluation logic
+├── cache.py              # Response caching
+├── config.py             # Configuration management
+├── cli.py                # Command-line interface
+│
+├── ai/                   # AI/ML models
+│   ├── predictive_model.py
+│   ├── anomaly_model.py
+│   ├── tradeoff_model.py
+│   └── loader.py         # Model loading utilities
+│
+├── intelligence/         # Intelligence systems
+│   └── cve_advisory.py   # Security vulnerability database
+│
+├── policy/              # Policy management
+│   ├── policy_manager.py
+│   ├── policy_loader.py
+│   └── policy_validator.py
+│
+├── storage/             # Persistence layer
+│   └── sqlite_store.py  # SQLite storage implementation
+│
+└── models/              # Pre-trained models & data
+    ├── anomaly_model.json
+    ├── predictive_model.json
+    ├── tradeoff_model.json
+    └── cve_data.json    # 47 vendors, 65 real CVEs
 ```
 
 ---
