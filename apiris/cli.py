@@ -21,7 +21,11 @@ from rich import box
 from .client import CADClient
 from .config import load_config
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
+
+def get_package_models_dir() -> Path:
+    """Get the models directory from the installed package."""
+    return Path(__file__).parent / "models"
 
 app = typer.Typer(
     name="Apiris",
@@ -345,11 +349,12 @@ def status(
         model_table.add_column("Model", style="cyan")
         model_table.add_column("Status", style="yellow")
         
+        models_dir = get_package_models_dir()
         models = [
-            ("Anomaly Model", Path("models/anomaly_model.json")),
-            ("Predictive Model", Path("models/predictive_model.json")),
-            ("Tradeoff Model", Path("models/tradeoff_model.json")),
-            ("CVE Database", Path("models/cve_data.json")),
+            ("Anomaly Model", models_dir / "anomaly_model.json"),
+            ("Predictive Model", models_dir / "predictive_model.json"),
+            ("Tradeoff Model", models_dir / "tradeoff_model.json"),
+            ("CVE Database", models_dir / "cve_data.json"),
         ]
         
         for model_name, model_path in models:
@@ -411,8 +416,9 @@ def cve(
         cve_system = CVEAdvisorySystem()
         
         if not cve_system.enabled:
+            expected_path = get_package_models_dir() / "cve_data.json"
             console.print("[bold red]Error:[/bold red] CVE advisory system not available (missing CVE data file)")
-            console.print("[dim]Expected location: models/cve_data.json[/dim]\n")
+            console.print(f"[dim]Expected location: {expected_path}[/dim]\n")
             sys.exit(1)
         
         advisory = cve_system.get_advisory(vendor, service)

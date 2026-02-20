@@ -50,15 +50,21 @@ class CVEAdvisorySystem:
     for vendor/service combinations. Never modifies runtime decisions.
     """
     
-    def __init__(self, cve_data_path: str = "models/cve_data.json"):
+    def __init__(self, cve_data_path: Optional[str] = None):
         """
         Initialize CVE advisory system.
         
         Args:
-            cve_data_path: Path to local CVE database JSON file
+            cve_data_path: Path to local CVE database JSON file (defaults to package data)
         """
         self.cve_data: Dict[str, Dict[str, List[Dict[str, Any]]]] = {}
         self.enabled = False
+        
+        # Default to package data location if no path provided
+        if cve_data_path is None:
+            package_dir = Path(__file__).parent.parent
+            cve_data_path = str(package_dir / "models" / "cve_data.json")
+        
         self._load_cve_data(cve_data_path)
     
     def _load_cve_data(self, path: str) -> None:
