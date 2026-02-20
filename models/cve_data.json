@@ -1,0 +1,1044 @@
+{
+  "metadata": {
+    "last_updated": "2026-02-20",
+    "coverage_period": "2024-02-21 to 2026-02-20",
+    "total_vendors": 136,
+    "vendors_with_cves": 10,
+    "total_cves": 26,
+    "severity_filter": "HIGH (≥7.0) and CRITICAL (≥9.0)",
+    "max_cves_per_vendor": 10,
+    "data_source": "GitHub Security Advisory Database (comprehensive scan)",
+    "api_url": "https://api.github.com/advisories",
+    "vendor_focus": "100+ Third-party API service providers"
+  },
+  "vendors": {
+    "openai": {
+      "critical_count": 0,
+      "high_count": 1,
+      "recent_cves": [
+        {
+          "id": "CVE-2025-68665",
+          "cvss": 8.6,
+          "severity": "HIGH",
+          "published": "2025-12-23",
+          "description": "LangChain serialization injection vulnerability enables secret extraction",
+          "references": [
+            "https://github.com/langchain-ai/langchainjs/security/advisories/GHSA-r399-636x-v7f6",
+            "https://github.com/langchain-ai/langchainjs/commit/e5063f9c6e9989ea067dfdff39262b9e7b6aba62",
+            "https://github.com/langchain-ai/langchainjs/releases/tag/%40langchain%2Fcore%401.1.8"
+          ],
+          "affected_versions": []
+        }
+      ]
+    },
+    "anthropic": {
+      "critical_count": 1,
+      "high_count": 0,
+      "recent_cves": [
+        {
+          "id": "CVE-2026-26980",
+          "cvss": 9.4,
+          "severity": "CRITICAL",
+          "published": "2026-02-18",
+          "description": "Ghost has a SQL injection in Content API",
+          "references": [
+            "https://github.com/TryGhost/Ghost/security/advisories/GHSA-w52v-v783-gw97",
+            "https://github.com/TryGhost/Ghost/commit/30868d632b2252b638bc8a4c8ebf73964592ed91",
+            "https://github.com/TryGhost/Ghost/releases/tag/v6.19.1"
+          ],
+          "affected_versions": []
+        }
+      ]
+    },
+    "cohere": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "huggingface": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "replicate": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "stability": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "elevenlabs": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "aws": {
+      "critical_count": 1,
+      "high_count": 2,
+      "recent_cves": [
+        {
+          "id": "GHSA-fhvm-j76f-qmjv",
+          "cvss": 9.5,
+          "severity": "CRITICAL",
+          "published": "2026-02-17",
+          "description": "OpenClaw has a potential access-group authorization bypass if channel type lookup fails",
+          "references": [
+            "https://github.com/openclaw/openclaw/security/advisories/GHSA-fhvm-j76f-qmjv",
+            "https://github.com/openclaw/openclaw/commit/3cbcba10cf30c2ffb898f0d8c7dfb929f15f8930",
+            "https://github.com/openclaw/openclaw/commit/5643a934799dc523ec2ef18c007e1aa2c386b670"
+          ],
+          "affected_versions": []
+        },
+        {
+          "id": "CVE-2025-4960",
+          "cvss": 7.8,
+          "severity": "HIGH",
+          "published": "2026-02-19",
+          "description": "The com.epson.InstallNavi.helper tool, deployed with the EPSON printer driver installer, contains...",
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-4960",
+            "https://pentraze.com/vulnerability-reports",
+            "https://pentraze.com/vulnerability-reports/cve-2025-4960"
+          ],
+          "affected_versions": []
+        },
+        {
+          "id": "CVE-2026-25474",
+          "cvss": 7.5,
+          "severity": "HIGH",
+          "published": "2026-02-17",
+          "description": "OpenClaw has a Telegram webhook request forgery (missing `channels.telegram.webhookSecret`) → auth bypass",
+          "references": [
+            "https://github.com/openclaw/openclaw/security/advisories/GHSA-mp5h-m6qj-6292",
+            "https://github.com/openclaw/openclaw/commit/3cbcba10cf30c2ffb898f0d8c7dfb929f15f8930",
+            "https://github.com/openclaw/openclaw/commit/5643a934799dc523ec2ef18c007e1aa2c386b670"
+          ],
+          "affected_versions": []
+        }
+      ]
+    },
+    "azure": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "google_cloud": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "digitalocean": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "linode": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "vultr": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "hetzner": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "ovh": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "scaleway": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "stripe": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "paypal": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "square": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "braintree": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "adyen": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "checkout": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "razorpay": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "plaid": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "dwolla": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "klarna": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "twilio": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "sendgrid": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "mailgun": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "mailchimp": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "postmark": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "sparkpost": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "sendinblue": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "messagebird": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "vonage": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "bandwidth": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "auth0": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "okta": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "clerk": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "supertokens": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "fusionauth": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "keycloak": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "cognito": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "firebase_auth": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "slack": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "discord": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "teams": {
+      "critical_count": 0,
+      "high_count": 1,
+      "recent_cves": [
+        {
+          "id": "CVE-2026-21535",
+          "cvss": 8.2,
+          "severity": "HIGH",
+          "published": "2026-02-20",
+          "description": "Improper access control in Microsoft Teams allows an unauthorized attacker to disclose...",
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-21535",
+            "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-21535",
+            "https://github.com/advisories/GHSA-rx38-cw65-cmwp"
+          ],
+          "affected_versions": []
+        }
+      ]
+    },
+    "zoom": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "miro": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "notion": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "airtable": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "github": {
+      "critical_count": 9,
+      "high_count": 1,
+      "recent_cves": [
+        {
+          "id": "CVE-2026-26030",
+          "cvss": 10.0,
+          "severity": "CRITICAL",
+          "published": "2026-02-19",
+          "description": "Microsoft Semantic Kernel InMemoryVectorStore filter functionality vulnerable to remote code execution",
+          "references": [
+            "https://github.com/microsoft/semantic-kernel/security/advisories/GHSA-xjw9-4gw8-4rqx",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-26030",
+            "https://github.com/microsoft/semantic-kernel/pull/13505"
+          ],
+          "affected_versions": []
+        },
+        {
+          "id": "CVE-2026-25592",
+          "cvss": 10.0,
+          "severity": "CRITICAL",
+          "published": "2026-02-06",
+          "description": "Semantic Kernel has Arbitrary File Write via AI Agent Function Calling in .NET SDK",
+          "references": [
+            "https://github.com/microsoft/semantic-kernel/security/advisories/GHSA-2ww3-72rp-wpp4",
+            "https://github.com/microsoft/semantic-kernel/pull/13478/changes#diff-88d3cacba2bfa84eef8f2aa171b34f9940338cbb784a3ffc49f5fe3af1b8943d",
+            "https://github.com/microsoft/semantic-kernel/blob/main/dotnet/samples/Demos/CodeInterpreterPlugin/Program.cs#L61-L64"
+          ],
+          "affected_versions": []
+        },
+        {
+          "id": "CVE-2026-25142",
+          "cvss": 10.0,
+          "severity": "CRITICAL",
+          "published": "2026-02-02",
+          "description": "SandboxJS Vulnerable to Prototype Pollution -> Sandbox Escape -> RCE",
+          "references": [
+            "https://github.com/nyariv/SandboxJS/security/advisories/GHSA-9p4w-fq8m-2hp7",
+            "https://github.com/nyariv/SandboxJS/commit/75c8009db32e6829b0ad92ca13bf458178442bd3",
+            "https://github.com/nyariv/SandboxJS/blob/f212a38fb5a6d4bc2bc2e2466c0c011ce8d41072/src/executor.ts#L368-L398"
+          ],
+          "affected_versions": []
+        },
+        {
+          "id": "CVE-2026-26273",
+          "cvss": 9.8,
+          "severity": "CRITICAL",
+          "published": "2026-02-13",
+          "description": "Known affected by Account Takeover via Password Reset Token Leakage",
+          "references": [
+            "https://github.com/idno/known/security/advisories/GHSA-78wq-6gcv-w28r",
+            "https://github.com/idno/known/commit/8439a0747471559fb1ea9f074b929d390f27e66a",
+            "https://github.com/idno/known/releases/tag/1.6.3"
+          ],
+          "affected_versions": []
+        },
+        {
+          "id": "CVE-2026-26190",
+          "cvss": 9.8,
+          "severity": "CRITICAL",
+          "published": "2026-02-11",
+          "description": "Milvus: Unauthenticated Access to Restful API on Metrics Port (9091) Leads to Critical System Compromise",
+          "references": [
+            "https://github.com/milvus-io/milvus/security/advisories/GHSA-7ppg-37fh-vcr6",
+            "https://github.com/milvus-io/milvus/releases/tag/v2.5.27",
+            "https://github.com/milvus-io/milvus/releases/tag/v2.6.10"
+          ],
+          "affected_versions": []
+        },
+        {
+          "id": "CVE-2026-27212",
+          "cvss": 9.5,
+          "severity": "CRITICAL",
+          "published": "2026-02-19",
+          "description": "Prototype pollution in swiper",
+          "references": [
+            "https://github.com/nolimits4web/swiper/security/advisories/GHSA-hmx5-qpq5-p643",
+            "https://github.com/nolimits4web/swiper/commit/d3e663322a13043ca63aaba235d8cf3900e0c8cf",
+            "https://github.com/nolimits4web/swiper/releases/tag/v12.1.2"
+          ],
+          "affected_versions": []
+        },
+        {
+          "id": "GHSA-r5h9-vjqc-hq3r",
+          "cvss": 9.5,
+          "severity": "CRITICAL",
+          "published": "2026-02-17",
+          "description": "Nextcloud Talk allowlist bypass via actor.name display name spoofing",
+          "references": [
+            "https://github.com/openclaw/openclaw/security/advisories/GHSA-r5h9-vjqc-hq3r",
+            "https://github.com/openclaw/openclaw/commit/660f87278c9f292061e097441e0b10c20d62b31b",
+            "https://github.com/openclaw/openclaw/commit/6b4b6049b47c3329a7014509594647826669892d"
+          ],
+          "affected_versions": []
+        },
+        {
+          "id": "CVE-2025-6547",
+          "cvss": 9.5,
+          "severity": "CRITICAL",
+          "published": "2025-06-23",
+          "description": "pbkdf2 silently disregards Uint8Array input, returning static keys",
+          "references": [
+            "https://github.com/browserify/pbkdf2/security/advisories/GHSA-v62p-rq8g-8h59",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-6547",
+            "https://github.com/browserify/pbkdf2/commit/e3102a8cd4830a3ac85cd0dd011cc002fdde33bb"
+          ],
+          "affected_versions": []
+        },
+        {
+          "id": "CVE-2026-0573",
+          "cvss": 9.1,
+          "severity": "HIGH",
+          "published": "2026-02-18",
+          "description": "An URL redirection vulnerability was identified in GitHub Enterprise Server that allowed attacker...",
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-0573",
+            "https://docs.github.com/en/enterprise-server@3.14/admin/release-notes#3.14.22",
+            "https://docs.github.com/en/enterprise-server@3.15/admin/release-notes#3.15.17"
+          ],
+          "affected_versions": []
+        },
+        {
+          "id": "GHSA-r5fq-947m-xm57",
+          "cvss": 8.8,
+          "severity": "HIGH",
+          "published": "2026-02-19",
+          "description": "OpenClaw has a path traversal in apply_patch could write/delete files outside the workspace",
+          "references": [
+            "https://github.com/openclaw/openclaw/security/advisories/GHSA-r5fq-947m-xm57",
+            "https://github.com/openclaw/openclaw/pull/16405",
+            "https://github.com/openclaw/openclaw/commit/5544646a09c0121fca7d7093812dc2de8437c7f1"
+          ],
+          "affected_versions": []
+        }
+      ]
+    },
+    "gitlab": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "bitbucket": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "circleci": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "travis": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "jenkins": {
+      "critical_count": 0,
+      "high_count": 1,
+      "recent_cves": [
+        {
+          "id": "CVE-2026-27099",
+          "cvss": 8.0,
+          "severity": "HIGH",
+          "published": "2026-02-18",
+          "description": "Jenkins has a stored XSS vulnerability in node offline cause description",
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-27099",
+            "https://www.jenkins.io/security/advisory/2026-02-18/#SECURITY-3669",
+            "https://github.com/jenkinsci/jenkins/commit/578c028e2cdfdc9e124d0ca389a80bb2bd231ab2"
+          ],
+          "affected_versions": []
+        }
+      ]
+    },
+    "bamboo": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "teamcity": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "drone": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "vercel": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "netlify": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "heroku": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "railway": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "render": {
+      "critical_count": 0,
+      "high_count": 2,
+      "recent_cves": [
+        {
+          "id": "CVE-2026-27013",
+          "cvss": 7.6,
+          "severity": "HIGH",
+          "published": "2026-02-18",
+          "description": "Fabric.js Affected by Stored XSS via SVG Export",
+          "references": [
+            "https://github.com/fabricjs/fabric.js/security/advisories/GHSA-hfvx-25r5-qc3w",
+            "https://github.com/fabricjs/fabric.js/commit/7e1a122defd8feefe4eb7eaf0c180d7b0aeb6fee",
+            "https://github.com/fabricjs/fabric.js/releases/tag/v720"
+          ],
+          "affected_versions": []
+        },
+        {
+          "id": "CVE-2025-13672",
+          "cvss": 7.5,
+          "severity": "HIGH",
+          "published": "2026-02-20",
+          "description": "Improper Neutralization of Input During Web Page Generation (XSS or 'Cross-site Scripting')...",
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-13672",
+            "https://support.opentext.com/csm/en?id=ot_kb_unauthenticated&sysparm_article=KB0854847",
+            "https://github.com/advisories/GHSA-558g-hvr5-cchr"
+          ],
+          "affected_versions": []
+        }
+      ]
+    },
+    "fly": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "deno_deploy": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "cloudflare_pages": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "surge": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "cloudflare": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "fastly": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "akamai": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "bunny": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "datadog": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "newrelic": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "sentry": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "logrocket": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "rollbar": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "bugsnag": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "honeybadger": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "grafana": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "prometheus": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "splunk": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "mongodb_atlas": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "redis_cloud": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "elastic_cloud": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "supabase": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "planetscale": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "neon": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "cockroachdb": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "fauna": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "segment": {
+      "critical_count": 0,
+      "high_count": 2,
+      "recent_cves": [
+        {
+          "id": "CVE-2019-25352",
+          "cvss": 7.5,
+          "severity": "HIGH",
+          "published": "2026-02-19",
+          "description": "Crystal Live HTTP Server 6.01 contains a directory traversal vulnerability that allows remote...",
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2019-25352",
+            "https://web.archive.org/web/20190105124716/https://www.crystalrs.com/crystal-quality-introduction",
+            "https://www.exploit-db.com/exploits/47666"
+          ],
+          "affected_versions": []
+        },
+        {
+          "id": "CVE-2026-26205",
+          "cvss": 7.5,
+          "severity": "HIGH",
+          "published": "2026-02-18",
+          "description": "opa-envoy-plugin has an Authorization Bypass via Double-Slash Path Misinterpretation in input.parsed_path",
+          "references": [
+            "https://github.com/open-policy-agent/opa-envoy-plugin/security/advisories/GHSA-9f29-v6mm-pw6w",
+            "https://github.com/open-policy-agent/opa-envoy-plugin/commit/58c44d4ec408d5852d1d0287599e7d5c5e2bc5c3",
+            "https://github.com/open-policy-agent/opa-envoy-plugin/releases/tag/v1.13.2-envoy-2"
+          ],
+          "affected_versions": []
+        }
+      ]
+    },
+    "amplitude": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "mixpanel": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "heap": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "posthog": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "plausible": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "umami": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "google_analytics": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "algolia": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "elasticsearch": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "meilisearch": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "typesense": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "pusher": {
+      "critical_count": 0,
+      "high_count": 1,
+      "recent_cves": [
+        {
+          "id": "CVE-2026-25232",
+          "cvss": 7.5,
+          "severity": "HIGH",
+          "published": "2026-02-17",
+          "description": "Gogs has a Protected Branch Deletion Bypass in Web Interface",
+          "references": [
+            "https://github.com/gogs/gogs/security/advisories/GHSA-2c6v-8r3v-gh6p",
+            "https://github.com/gogs/gogs/pull/8124",
+            "https://github.com/gogs/gogs/commit/7b7e38c88007a7c482dbf31efff896185fd9b79c"
+          ],
+          "affected_versions": []
+        }
+      ]
+    },
+    "ably": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "pubnub": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "socketio": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "shopify": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "woocommerce": {
+      "critical_count": 1,
+      "high_count": 3,
+      "recent_cves": [
+        {
+          "id": "CVE-2026-1937",
+          "cvss": 9.8,
+          "severity": "CRITICAL",
+          "published": "2026-02-18",
+          "description": "The YayMail – WooCommerce Email Customizer plugin for WordPress is vulnerable to unauthorized...",
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-1937",
+            "https://plugins.trac.wordpress.org/browser/yaymail/tags/4.3.2/src/Models/MigrationModel.php#L143",
+            "https://plugins.trac.wordpress.org/browser/yaymail/trunk/src/Models/MigrationModel.php#L143"
+          ],
+          "affected_versions": []
+        },
+        {
+          "id": "CVE-2026-27052",
+          "cvss": 7.5,
+          "severity": "HIGH",
+          "published": "2026-02-19",
+          "description": "Improper Control of Filename for Include/Require Statement in PHP Program ('PHP Remote File...",
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-27052",
+            "https://patchstack.com/database/Wordpress/Plugin/sctv-sales-countdown-timer/vulnerability/wordpress-sales-countdown-timer-for-woocommerce-and-wordpress-plugin-1-1-8-1-local-file-inclusion-vulnerability?_s_id=cve",
+            "https://github.com/advisories/GHSA-wc8x-254r-w3mh"
+          ],
+          "affected_versions": []
+        },
+        {
+          "id": "CVE-2026-2232",
+          "cvss": 7.5,
+          "severity": "HIGH",
+          "published": "2026-02-19",
+          "description": "The Product Table and List Builder for WooCommerce Lite plugin for WordPress is vulnerable to...",
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-2232",
+            "https://plugins.trac.wordpress.org/browser/wc-product-table-lite/tags/4.6.2/search.php#L549",
+            "https://plugins.trac.wordpress.org/browser/wc-product-table-lite/tags/4.6.2/search.php#L574"
+          ],
+          "affected_versions": []
+        },
+        {
+          "id": "CVE-2025-12975",
+          "cvss": 7.2,
+          "severity": "HIGH",
+          "published": "2026-02-19",
+          "description": "The CTX Feed – WooCommerce Product Feed Manager plugin for WordPress is vulnerable to...",
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-12975",
+            "https://plugins.trac.wordpress.org/changeset?sfp_email=&sfph_mail=&reponame=&old=3417230%40webappick-product-feed-for-woocommerce&new=3417230%40webappick-product-feed-for-woocommerce&sfp_email=&sfph_mail=",
+            "https://wordpress.org/plugins/webappick-product-feed-for-woocommerce"
+          ],
+          "affected_versions": []
+        }
+      ]
+    },
+    "magento": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "bigcommerce": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "contentful": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "sanity": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "strapi": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "prismic": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "postman": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "insomnia": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "swagger": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "kong": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "apigee": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "salesforce": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "workday": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "servicenow": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "zendesk": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "intercom": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "hubspot": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "pipedrive": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "cloudinary": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "imgix": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "uploadcare": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "mux": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "vimeo": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "youtube": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "mapbox": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "google_maps": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    },
+    "here": {
+      "critical_count": 0,
+      "high_count": 0,
+      "recent_cves": []
+    }
+  }
+}

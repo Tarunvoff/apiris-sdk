@@ -1,0 +1,9 @@
+apiris:
+  enable_ai: true
+  integrity_threshold: 0.25
+  availability_threshold: 0.40
+  anomaly_threshold: 0.70
+  mode: enforce
+  enable_explanation: false
+  log_dir: runtime/logs
+  models_dir: models

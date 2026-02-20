@@ -1,0 +1,40 @@
+# Logs and Runtime
+logs/
+runtime/
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+
+# CVE Data Generators (local only)
+generate_cve_data.py
+validate_cve_data.py
+fetch_real_cve_data.py
+fetch_real_cve_github.py
+fetch_api_cve_data.py
+create_comprehensive_cve_dataset.py
+fetch_comprehensive_api_cves.py
+
+# Node (for dev-saas branch only)
+node_modules/
+.vite/
