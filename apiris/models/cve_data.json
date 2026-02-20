@@ -1,20 +1,511 @@
 {
   "metadata": {
-    "last_updated": "2026-02-20",
-    "coverage_period": "2024-02-21 to 2026-02-20",
-    "total_vendors": 136,
-    "vendors_with_cves": 10,
-    "total_cves": 26,
-    "severity_filter": "HIGH (≥7.0) and CRITICAL (≥9.0)",
-    "max_cves_per_vendor": 10,
-    "data_source": "GitHub Security Advisory Database (comprehensive scan)",
-    "api_url": "https://api.github.com/advisories",
-    "vendor_focus": "100+ Third-party API service providers"
+    "last_updated": "2026-02-21",
+    "coverage_period": "2020-2026",
+    "total_vendors": 47,
+    "vendors_with_cves": 47,
+    "total_cves": 65,
+    "severity_filter": "HIGH (\u22657.0) and CRITICAL (\u22659.0)",
+    "data_source": "GitHub Security Advisory Database & NIST NVD (Real CVE Data)",
+    "api_url": "https://api.github.com/graphql",
+    "vendor_focus": "API services, frameworks, and SDKs"
   },
   "vendors": {
-    "openai": {
+    "aws_sdk": {
+      "name": "aws-sdk",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2020-28472",
+          "cvss": 7.3,
+          "severity": "HIGH",
+          "published": "2021-11-16",
+          "description": "Prototype Pollution via file load in aws-sdk and @aws-sdk/shared-ini-file-loader",
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2020-28472",
+            "https://github.com/aws/aws-sdk-js/pull/3585/commits/7d72aff2a941173733fcb6741b104cd83d3bc611"
+          ],
+          "affected_versions": [
+            "< 2.814.0"
+          ]
+        }
+      ],
       "critical_count": 0,
-      "high_count": 1,
+      "high_count": 1
+    },
+    "auth0": {
+      "name": "auth0",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2020-15125",
+          "cvss": 7.7,
+          "severity": "HIGH",
+          "published": "2020-07-29",
+          "description": "Authorization header is not sanitized in an error object in auth0",
+          "references": [
+            "https://github.com/auth0/node-auth0/security/advisories/GHSA-5jpf-pj32-xx53",
+            "https://github.com/auth0/node-auth0/pull/507"
+          ],
+          "affected_versions": [
+            "< 2.27.1"
+          ]
+        }
+      ],
+      "critical_count": 0,
+      "high_count": 1
+    },
+    "jsonwebtoken": {
+      "name": "jsonwebtoken",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2022-23539",
+          "cvss": 8.1,
+          "severity": "HIGH",
+          "published": "2022-12-22",
+          "description": "jsonwebtoken unrestricted key type could lead to legacy keys usage ",
+          "references": [
+            "https://github.com/auth0/node-jsonwebtoken/security/advisories/GHSA-8cf7-32gw-wr33",
+            "https://github.com/auth0/node-jsonwebtoken/commit/e1fa9dcc12054a8681db4e6373da1b30cf7016e3"
+          ],
+          "affected_versions": [
+            "<= 8.5.1"
+          ]
+        },
+        {
+          "id": "CVE-2022-23529",
+          "cvss": 7.6,
+          "severity": "HIGH",
+          "published": "2022-12-22",
+          "description": "jsonwebtoken has insecure input validation in jwt.verify function",
+          "references": [
+            "https://github.com/auth0/node-jsonwebtoken/security/advisories/GHSA-27h2-hvpr-p74q",
+            "https://nvd.nist.gov/vuln/detail/CVE-2022-23529"
+          ],
+          "affected_versions": [
+            "<= 8.5.1"
+          ]
+        }
+      ],
+      "critical_count": 0,
+      "high_count": 2
+    },
+    "keycloak_connect": {
+      "name": "keycloak-connect",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2017-7474",
+          "cvss": 9.8,
+          "severity": "CRITICAL",
+          "published": "2017-11-15",
+          "description": "keycloak-connect and keycloak-js improperly handle invalid tokens",
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2017-7474",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=1445271"
+          ],
+          "affected_versions": [
+            ">= 2.5.0, < 3.1.0"
+          ]
+        }
+      ],
+      "critical_count": 1,
+      "high_count": 0
+    },
+    "clerk_nextjs": {
+      "name": "@clerk/nextjs",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2025-53548",
+          "cvss": 7.5,
+          "severity": "HIGH",
+          "published": "2025-07-09",
+          "description": "@clerk/backend Performs Insufficient Verification of Data Authenticity",
+          "references": [
+            "https://github.com/clerk/javascript/security/advisories/GHSA-9mp4-77wg-rwx9",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-53548"
+          ],
+          "affected_versions": [
+            ">= 6.2.10, < 6.23.3"
+          ]
+        },
+        {
+          "id": "CVE-2024-22206",
+          "cvss": 9.1,
+          "severity": "CRITICAL",
+          "published": "2024-01-12",
+          "description": "@clerk/nextjs auth() and getAuth() methods vulnerable to insecure direct object reference (IDOR) ",
+          "references": [
+            "https://github.com/clerk/javascript/security/advisories/GHSA-q6w5-jg5q-47vg",
+            "https://clerk.com/changelog/2024-01-12"
+          ],
+          "affected_versions": [
+            ">= 4.7.0, < 4.29.3"
+          ]
+        }
+      ],
+      "critical_count": 1,
+      "high_count": 1
+    },
+    "mongodb": {
+      "name": "mongodb",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2025-11695",
+          "cvss": 8.0,
+          "severity": "HIGH",
+          "published": "2025-10-13",
+          "description": "MongoDB Rust Driver has certificate validation disabled when `tlsInsecure=False` appears in connection string",
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-11695",
+            "https://jira.mongodb.org/browse/RUST-2264"
+          ],
+          "affected_versions": [
+            "< 3.2.5"
+          ]
+        }
+      ],
+      "critical_count": 0,
+      "high_count": 1
+    },
+    "mongoose": {
+      "name": "mongoose",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2024-53900",
+          "cvss": 9.8,
+          "severity": "HIGH",
+          "published": "2024-12-02",
+          "description": "Mongoose search injection vulnerability",
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-53900",
+            "https://github.com/Automattic/mongoose/commit/c9e86bff7eef477da75a29af62a06d41a835a156"
+          ],
+          "affected_versions": [
+            ">= 3.6.0-rc0, < 5.13.23"
+          ]
+        },
+        {
+          "id": "CVE-2025-23061",
+          "cvss": 9.1,
+          "severity": "CRITICAL",
+          "published": "2025-01-15",
+          "description": "Mongoose search injection vulnerability",
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-23061",
+            "https://github.com/Automattic/mongoose/commit/64a9f9706f2428c49e0cfb8e223065acc645f7bc"
+          ],
+          "affected_versions": [
+            "< 6.13.6"
+          ]
+        }
+      ],
+      "critical_count": 1,
+      "high_count": 1
+    },
+    "redis": {
+      "name": "redis",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2023-28859",
+          "cvss": 6.5,
+          "severity": "HIGH",
+          "published": "2023-03-26",
+          "description": "redis-py Race Condition due to incomplete fix",
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2023-28859",
+            "https://github.com/redis/redis-py/issues/2665"
+          ],
+          "affected_versions": [
+            ">= 4.2.0, < 4.4.4"
+          ]
+        }
+      ],
+      "critical_count": 0,
+      "high_count": 1
+    },
+    "pg": {
+      "name": "pg",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2017-16082",
+          "cvss": 9.8,
+          "severity": "CRITICAL",
+          "published": "2018-07-24",
+          "description": "Remote Code Execution in pg",
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2017-16082",
+            "https://github.com/advisories/GHSA-wc9v-mj63-m9g5"
+          ],
+          "affected_versions": [
+            ">= 7.1.0, < 7.1.2"
+          ]
+        }
+      ],
+      "critical_count": 1,
+      "high_count": 0
+    },
+    "mysql2": {
+      "name": "mysql2",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2024-21512",
+          "cvss": 8.2,
+          "severity": "HIGH",
+          "published": "2024-05-30",
+          "description": "mysql2 vulnerable to Prototype Pollution",
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-21512",
+            "https://github.com/sidorares/node-mysql2/pull/2702"
+          ],
+          "affected_versions": [
+            "< 3.9.8"
+          ]
+        },
+        {
+          "id": "CVE-2024-21511",
+          "cvss": 9.8,
+          "severity": "CRITICAL",
+          "published": "2024-04-23",
+          "description": "MySQL2 for Node Arbitrary Code Injection",
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-21511",
+            "https://github.com/sidorares/node-mysql2/pull/2608"
+          ],
+          "affected_versions": [
+            "< 3.9.7"
+          ]
+        },
+        {
+          "id": "CVE-2024-21508",
+          "cvss": 9.8,
+          "severity": "CRITICAL",
+          "published": "2024-04-11",
+          "description": "mysql2 Remote Code Execution (RCE) via the readCodeFor function",
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-21508",
+            "https://github.com/sidorares/node-mysql2/pull/2572"
+          ],
+          "affected_versions": [
+            "< 3.9.4"
+          ]
+        }
+      ],
+      "critical_count": 2,
+      "high_count": 1
+    },
+    "fastapi": {
+      "name": "fastapi",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2021-32677",
+          "cvss": 8.2,
+          "severity": "HIGH",
+          "published": "2021-06-10",
+          "description": "Cross-Site Request Forgery (CSRF) in FastAPI",
+          "references": [
+            "https://github.com/tiangolo/fastapi/security/advisories/GHSA-8h2j-cgx8-6xv7",
+            "https://nvd.nist.gov/vuln/detail/CVE-2021-32677"
+          ],
+          "affected_versions": [
+            "< 0.65.2"
+          ]
+        },
+        {
+          "id": "GHSA-qf9m-vfgh-m389",
+          "cvss": 7.5,
+          "severity": "HIGH",
+          "published": "2024-02-05",
+          "description": "Duplicate Advisory: FastAPI Content-Type Header ReDoS",
+          "references": [
+            "https://github.com/tiangolo/fastapi/security/advisories/GHSA-qf9m-vfgh-m389",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-24762"
+          ],
+          "affected_versions": [
+            "<= 0.109.0"
+          ]
+        }
+      ],
+      "critical_count": 0,
+      "high_count": 2
+    },
+    "django": {
+      "name": "Django",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2026-1287",
+          "cvss": 8.0,
+          "severity": "HIGH",
+          "published": "2026-02-03",
+          "description": "Django has an SQL Injection issue",
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-1287",
+            "https://docs.djangoproject.com/en/dev/releases/security"
+          ],
+          "affected_versions": [
+            ">= 4.2a1, < 4.2.28"
+          ]
+        }
+      ],
+      "critical_count": 0,
+      "high_count": 1
+    },
+    "flask": {
+      "name": "flask",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2018-1000656",
+          "cvss": 7.5,
+          "severity": "HIGH",
+          "published": "2018-08-23",
+          "description": "Flask is vulnerable to Denial of Service via incorrect encoding of JSON data",
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2018-1000656",
+            "https://github.com/pallets/flask/pull/2691"
+          ],
+          "affected_versions": [
+            "< 0.12.3"
+          ]
+        },
+        {
+          "id": "CVE-2023-30861",
+          "cvss": 7.5,
+          "severity": "HIGH",
+          "published": "2023-05-01",
+          "description": "Flask vulnerable to possible disclosure of permanent session cookie due to missing Vary: Cookie header",
+          "references": [
+            "https://github.com/pallets/flask/security/advisories/GHSA-m2qf-hxjv-5gpq",
+            "https://github.com/pallets/flask/commit/70f906c51ce49c485f1d355703e9cc3386b1cc2b"
+          ],
+          "affected_versions": [
+            ">= 2.3.0, < 2.3.2"
+          ]
+        }
+      ],
+      "critical_count": 0,
+      "high_count": 2
+    },
+    "rails": {
+      "name": "rails",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2009-2422",
+          "cvss": 9.8,
+          "severity": "CRITICAL",
+          "published": "2017-10-24",
+          "description": "rails vulnerable to improper authentication",
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2009-2422",
+            "https://exchange.xforce.ibmcloud.com/vulnerabilities/51528"
+          ],
+          "affected_versions": [
+            "< 2.3.3"
+          ]
+        },
+        {
+          "id": "CVE-2006-4111",
+          "cvss": 8.0,
+          "severity": "HIGH",
+          "published": "2017-10-24",
+          "description": "Ruby on Rails vulnerable to code injection",
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2006-4111",
+            "http://blog.koehntopp.de/archives/1367-Ruby-On-Rails-Mandatory-Mystery-Patch.html"
+          ],
+          "affected_versions": [
+            ">= 1.1.0, < 1.1.6"
+          ]
+        }
+      ],
+      "critical_count": 1,
+      "high_count": 1
+    },
+    "axios": {
+      "name": "axios",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2026-25639",
+          "cvss": 7.5,
+          "severity": "HIGH",
+          "published": "2026-02-09",
+          "description": "Axios is Vulnerable to Denial of Service via __proto__ Key in mergeConfig",
+          "references": [
+            "https://github.com/axios/axios/security/advisories/GHSA-43fc-jf86-j433",
+            "https://github.com/axios/axios/pull/7369"
+          ],
+          "affected_versions": [
+            "<= 0.30.2"
+          ]
+        },
+        {
+          "id": "CVE-2025-58754",
+          "cvss": 7.5,
+          "severity": "HIGH",
+          "published": "2025-09-11",
+          "description": "Axios is vulnerable to DoS attack through lack of data size check",
+          "references": [
+            "https://github.com/axios/axios/security/advisories/GHSA-4hjh-wcwx-xvwj",
+            "https://github.com/axios/axios/pull/7011"
+          ],
+          "affected_versions": [
+            ">= 0.28.0, < 0.30.2"
+          ]
+        },
+        {
+          "id": "CVE-2025-54371",
+          "cvss": 7.5,
+          "severity": "HIGH",
+          "published": "2025-07-23",
+          "description": "Withdrawn Advisory: Axios has Transitive Critical Vulnerability via form-data",
+          "references": [
+            "https://github.com/axios/axios/security/advisories/GHSA-rm8p-cx58-hcvx",
+            "https://github.com/axios/axios/issues/6969"
+          ],
+          "affected_versions": [
+            "= 1.10.0"
+          ]
+        }
+      ],
+      "critical_count": 0,
+      "high_count": 3
+    },
+    "node_fetch": {
+      "name": "node-fetch",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2022-0235",
+          "cvss": 8.8,
+          "severity": "HIGH",
+          "published": "2022-01-21",
+          "description": "node-fetch forwards secure headers to untrusted sites",
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2022-0235",
+            "https://github.com/node-fetch/node-fetch/commit/36e47e8a6406185921e4985dcbeff140d73eaa10"
+          ],
+          "affected_versions": [
+            "< 2.6.7"
+          ]
+        }
+      ],
+      "critical_count": 0,
+      "high_count": 1
+    },
+    "langchain": {
+      "name": "langchain",
+      "category": "API Service",
       "recent_cves": [
         {
           "id": "CVE-2025-68665",
@@ -24,16 +515,169 @@
           "description": "LangChain serialization injection vulnerability enables secret extraction",
           "references": [
             "https://github.com/langchain-ai/langchainjs/security/advisories/GHSA-r399-636x-v7f6",
-            "https://github.com/langchain-ai/langchainjs/commit/e5063f9c6e9989ea067dfdff39262b9e7b6aba62",
-            "https://github.com/langchain-ai/langchainjs/releases/tag/%40langchain%2Fcore%401.1.8"
+            "https://github.com/langchain-ai/langchainjs/commit/e5063f9c6e9989ea067dfdff39262b9e7b6aba62"
           ],
-          "affected_versions": []
+          "affected_versions": [
+            "< 0.3.37"
+          ]
+        },
+        {
+          "id": "CVE-2023-36258",
+          "cvss": 9.8,
+          "severity": "CRITICAL",
+          "published": "2023-07-03",
+          "description": "langchain arbitrary code execution vulnerability",
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2023-36258",
+            "https://github.com/pypa/advisory-database/tree/main/vulns/langchain/PYSEC-2023-98.yaml"
+          ],
+          "affected_versions": [
+            "< 0.0.247"
+          ]
+        },
+        {
+          "id": "CVE-2023-32785",
+          "cvss": 9.8,
+          "severity": "CRITICAL",
+          "published": "2023-10-21",
+          "description": "Langchain SQL Injection vulnerability",
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2023-32785",
+            "https://gist.github.com/rharang/9c58d39db8c01db5b7c888e467c0533f"
+          ],
+          "affected_versions": [
+            "< 0.0.247"
+          ]
         }
-      ]
+      ],
+      "critical_count": 2,
+      "high_count": 1
     },
-    "anthropic": {
+    "langchain_core": {
+      "name": "@langchain/core",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2025-68665",
+          "cvss": 8.6,
+          "severity": "HIGH",
+          "published": "2025-12-23",
+          "description": "LangChain serialization injection vulnerability enables secret extraction",
+          "references": [
+            "https://github.com/langchain-ai/langchainjs/security/advisories/GHSA-r399-636x-v7f6",
+            "https://github.com/langchain-ai/langchainjs/commit/e5063f9c6e9989ea067dfdff39262b9e7b6aba62"
+          ],
+          "affected_versions": [
+            "< 0.3.80"
+          ]
+        }
+      ],
+      "critical_count": 0,
+      "high_count": 1
+    },
+    "strapi": {
+      "name": "strapi",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2021-28128",
+          "cvss": 8.1,
+          "severity": "HIGH",
+          "published": "2021-10-06",
+          "description": "Weak Password Recovery Mechanism for Forgotten Password in Strapi",
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2021-28128",
+            "https://github.com/strapi/strapi/issues/9657"
+          ],
+          "affected_versions": [
+            "<= 3.6.0"
+          ]
+        },
+        {
+          "id": "CVE-2020-27664",
+          "cvss": 9.8,
+          "severity": "CRITICAL",
+          "published": "2021-05-10",
+          "description": "Authorization bypass in Strapi",
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2020-27664",
+            "https://github.com/strapi/strapi/pull/8442"
+          ],
+          "affected_versions": [
+            "< 3.2.5"
+          ]
+        },
+        {
+          "id": "CVE-2022-31367",
+          "cvss": 8.8,
+          "severity": "HIGH",
+          "published": "2022-09-28",
+          "description": "Strapi mishandles hidden attributes within admin API responses",
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2022-31367",
+            "https://github.com/kos0ng/CVEs/tree/main/CVE-2022-31367"
+          ],
+          "affected_versions": [
+            "< 3.6.10"
+          ]
+        }
+      ],
       "critical_count": 1,
-      "high_count": 0,
+      "high_count": 2
+    },
+    "strapi_strapi": {
+      "name": "@strapi/strapi",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2024-37818",
+          "cvss": 8.6,
+          "severity": "HIGH",
+          "published": "2024-06-20",
+          "description": "Strapi Server-Side Request Forgery (SSRF)",
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-37818",
+            "https://medium.com/%40barkadevaibhav491/server-side-request-forgery-in-strapi-e02d5fe218ab"
+          ],
+          "affected_versions": [
+            "= 4.24.4"
+          ]
+        },
+        {
+          "id": "CVE-2023-39345",
+          "cvss": 7.6,
+          "severity": "HIGH",
+          "published": "2023-11-03",
+          "description": "Unauthorized Access to Private Fields in User Registration API",
+          "references": [
+            "https://github.com/strapi/strapi/security/advisories/GHSA-gc7p-j5xm-xxh2",
+            "https://strapi.io/blog/security-disclosure-of-vulnerabilities-sept-2023"
+          ],
+          "affected_versions": [
+            ">= 4.0.0, < 4.13.1"
+          ]
+        },
+        {
+          "id": "CVE-2023-22894",
+          "cvss": 7.5,
+          "severity": "HIGH",
+          "published": "2023-04-19",
+          "description": "Strapi leaking sensitive user information by filtering on private fields",
+          "references": [
+            "https://github.com/strapi/strapi/security/advisories/GHSA-jjqf-j4w7-92w8",
+            "https://nvd.nist.gov/vuln/detail/CVE-2023-22894"
+          ],
+          "affected_versions": [
+            ">= 3.2.1, < 4.8.0"
+          ]
+        }
+      ],
+      "critical_count": 0,
+      "high_count": 3
+    },
+    "ghost": {
+      "name": "ghost",
+      "category": "API Service",
       "recent_cves": [
         {
           "id": "CVE-2026-26980",
@@ -43,1002 +687,596 @@
           "description": "Ghost has a SQL injection in Content API",
           "references": [
             "https://github.com/TryGhost/Ghost/security/advisories/GHSA-w52v-v783-gw97",
-            "https://github.com/TryGhost/Ghost/commit/30868d632b2252b638bc8a4c8ebf73964592ed91",
-            "https://github.com/TryGhost/Ghost/releases/tag/v6.19.1"
+            "https://github.com/TryGhost/Ghost/commit/30868d632b2252b638bc8a4c8ebf73964592ed91"
           ],
-          "affected_versions": []
-        }
-      ]
-    },
-    "cohere": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "huggingface": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "replicate": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "stability": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "elevenlabs": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "aws": {
-      "critical_count": 1,
-      "high_count": 2,
-      "recent_cves": [
-        {
-          "id": "GHSA-fhvm-j76f-qmjv",
-          "cvss": 9.5,
-          "severity": "CRITICAL",
-          "published": "2026-02-17",
-          "description": "OpenClaw has a potential access-group authorization bypass if channel type lookup fails",
-          "references": [
-            "https://github.com/openclaw/openclaw/security/advisories/GHSA-fhvm-j76f-qmjv",
-            "https://github.com/openclaw/openclaw/commit/3cbcba10cf30c2ffb898f0d8c7dfb929f15f8930",
-            "https://github.com/openclaw/openclaw/commit/5643a934799dc523ec2ef18c007e1aa2c386b670"
-          ],
-          "affected_versions": []
+          "affected_versions": [
+            ">= 3.24.0, < 6.19.1"
+          ]
         },
         {
-          "id": "CVE-2025-4960",
-          "cvss": 7.8,
-          "severity": "HIGH",
-          "published": "2026-02-19",
-          "description": "The com.epson.InstallNavi.helper tool, deployed with the EPSON printer driver installer, contains...",
-          "references": [
-            "https://nvd.nist.gov/vuln/detail/CVE-2025-4960",
-            "https://pentraze.com/vulnerability-reports",
-            "https://pentraze.com/vulnerability-reports/cve-2025-4960"
-          ],
-          "affected_versions": []
-        },
-        {
-          "id": "CVE-2026-25474",
-          "cvss": 7.5,
-          "severity": "HIGH",
-          "published": "2026-02-17",
-          "description": "OpenClaw has a Telegram webhook request forgery (missing `channels.telegram.webhookSecret`) → auth bypass",
-          "references": [
-            "https://github.com/openclaw/openclaw/security/advisories/GHSA-mp5h-m6qj-6292",
-            "https://github.com/openclaw/openclaw/commit/3cbcba10cf30c2ffb898f0d8c7dfb929f15f8930",
-            "https://github.com/openclaw/openclaw/commit/5643a934799dc523ec2ef18c007e1aa2c386b670"
-          ],
-          "affected_versions": []
-        }
-      ]
-    },
-    "azure": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "google_cloud": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "digitalocean": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "linode": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "vultr": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "hetzner": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "ovh": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "scaleway": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "stripe": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "paypal": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "square": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "braintree": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "adyen": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "checkout": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "razorpay": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "plaid": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "dwolla": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "klarna": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "twilio": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "sendgrid": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "mailgun": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "mailchimp": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "postmark": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "sparkpost": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "sendinblue": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "messagebird": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "vonage": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "bandwidth": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "auth0": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "okta": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "clerk": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "supertokens": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "fusionauth": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "keycloak": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "cognito": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "firebase_auth": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "slack": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "discord": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "teams": {
-      "critical_count": 0,
-      "high_count": 1,
-      "recent_cves": [
-        {
-          "id": "CVE-2026-21535",
-          "cvss": 8.2,
-          "severity": "HIGH",
-          "published": "2026-02-20",
-          "description": "Improper access control in Microsoft Teams allows an unauthorized attacker to disclose...",
-          "references": [
-            "https://nvd.nist.gov/vuln/detail/CVE-2026-21535",
-            "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-21535",
-            "https://github.com/advisories/GHSA-rx38-cw65-cmwp"
-          ],
-          "affected_versions": []
-        }
-      ]
-    },
-    "zoom": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "miro": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "notion": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "airtable": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "github": {
-      "critical_count": 9,
-      "high_count": 1,
-      "recent_cves": [
-        {
-          "id": "CVE-2026-26030",
-          "cvss": 10.0,
-          "severity": "CRITICAL",
-          "published": "2026-02-19",
-          "description": "Microsoft Semantic Kernel InMemoryVectorStore filter functionality vulnerable to remote code execution",
-          "references": [
-            "https://github.com/microsoft/semantic-kernel/security/advisories/GHSA-xjw9-4gw8-4rqx",
-            "https://nvd.nist.gov/vuln/detail/CVE-2026-26030",
-            "https://github.com/microsoft/semantic-kernel/pull/13505"
-          ],
-          "affected_versions": []
-        },
-        {
-          "id": "CVE-2026-25592",
-          "cvss": 10.0,
-          "severity": "CRITICAL",
-          "published": "2026-02-06",
-          "description": "Semantic Kernel has Arbitrary File Write via AI Agent Function Calling in .NET SDK",
-          "references": [
-            "https://github.com/microsoft/semantic-kernel/security/advisories/GHSA-2ww3-72rp-wpp4",
-            "https://github.com/microsoft/semantic-kernel/pull/13478/changes#diff-88d3cacba2bfa84eef8f2aa171b34f9940338cbb784a3ffc49f5fe3af1b8943d",
-            "https://github.com/microsoft/semantic-kernel/blob/main/dotnet/samples/Demos/CodeInterpreterPlugin/Program.cs#L61-L64"
-          ],
-          "affected_versions": []
-        },
-        {
-          "id": "CVE-2026-25142",
-          "cvss": 10.0,
-          "severity": "CRITICAL",
-          "published": "2026-02-02",
-          "description": "SandboxJS Vulnerable to Prototype Pollution -> Sandbox Escape -> RCE",
-          "references": [
-            "https://github.com/nyariv/SandboxJS/security/advisories/GHSA-9p4w-fq8m-2hp7",
-            "https://github.com/nyariv/SandboxJS/commit/75c8009db32e6829b0ad92ca13bf458178442bd3",
-            "https://github.com/nyariv/SandboxJS/blob/f212a38fb5a6d4bc2bc2e2466c0c011ce8d41072/src/executor.ts#L368-L398"
-          ],
-          "affected_versions": []
-        },
-        {
-          "id": "CVE-2026-26273",
-          "cvss": 9.8,
-          "severity": "CRITICAL",
-          "published": "2026-02-13",
-          "description": "Known affected by Account Takeover via Password Reset Token Leakage",
-          "references": [
-            "https://github.com/idno/known/security/advisories/GHSA-78wq-6gcv-w28r",
-            "https://github.com/idno/known/commit/8439a0747471559fb1ea9f074b929d390f27e66a",
-            "https://github.com/idno/known/releases/tag/1.6.3"
-          ],
-          "affected_versions": []
-        },
-        {
-          "id": "CVE-2026-26190",
-          "cvss": 9.8,
-          "severity": "CRITICAL",
-          "published": "2026-02-11",
-          "description": "Milvus: Unauthenticated Access to Restful API on Metrics Port (9091) Leads to Critical System Compromise",
-          "references": [
-            "https://github.com/milvus-io/milvus/security/advisories/GHSA-7ppg-37fh-vcr6",
-            "https://github.com/milvus-io/milvus/releases/tag/v2.5.27",
-            "https://github.com/milvus-io/milvus/releases/tag/v2.6.10"
-          ],
-          "affected_versions": []
-        },
-        {
-          "id": "CVE-2026-27212",
-          "cvss": 9.5,
-          "severity": "CRITICAL",
-          "published": "2026-02-19",
-          "description": "Prototype pollution in swiper",
-          "references": [
-            "https://github.com/nolimits4web/swiper/security/advisories/GHSA-hmx5-qpq5-p643",
-            "https://github.com/nolimits4web/swiper/commit/d3e663322a13043ca63aaba235d8cf3900e0c8cf",
-            "https://github.com/nolimits4web/swiper/releases/tag/v12.1.2"
-          ],
-          "affected_versions": []
-        },
-        {
-          "id": "GHSA-r5h9-vjqc-hq3r",
-          "cvss": 9.5,
-          "severity": "CRITICAL",
-          "published": "2026-02-17",
-          "description": "Nextcloud Talk allowlist bypass via actor.name display name spoofing",
-          "references": [
-            "https://github.com/openclaw/openclaw/security/advisories/GHSA-r5h9-vjqc-hq3r",
-            "https://github.com/openclaw/openclaw/commit/660f87278c9f292061e097441e0b10c20d62b31b",
-            "https://github.com/openclaw/openclaw/commit/6b4b6049b47c3329a7014509594647826669892d"
-          ],
-          "affected_versions": []
-        },
-        {
-          "id": "CVE-2025-6547",
-          "cvss": 9.5,
-          "severity": "CRITICAL",
-          "published": "2025-06-23",
-          "description": "pbkdf2 silently disregards Uint8Array input, returning static keys",
-          "references": [
-            "https://github.com/browserify/pbkdf2/security/advisories/GHSA-v62p-rq8g-8h59",
-            "https://nvd.nist.gov/vuln/detail/CVE-2025-6547",
-            "https://github.com/browserify/pbkdf2/commit/e3102a8cd4830a3ac85cd0dd011cc002fdde33bb"
-          ],
-          "affected_versions": []
-        },
-        {
-          "id": "CVE-2026-0573",
-          "cvss": 9.1,
-          "severity": "HIGH",
-          "published": "2026-02-18",
-          "description": "An URL redirection vulnerability was identified in GitHub Enterprise Server that allowed attacker...",
-          "references": [
-            "https://nvd.nist.gov/vuln/detail/CVE-2026-0573",
-            "https://docs.github.com/en/enterprise-server@3.14/admin/release-notes#3.14.22",
-            "https://docs.github.com/en/enterprise-server@3.15/admin/release-notes#3.15.17"
-          ],
-          "affected_versions": []
-        },
-        {
-          "id": "GHSA-r5fq-947m-xm57",
+          "id": "CVE-2026-24778",
           "cvss": 8.8,
           "severity": "HIGH",
-          "published": "2026-02-19",
-          "description": "OpenClaw has a path traversal in apply_patch could write/delete files outside the workspace",
+          "published": "2026-01-28",
+          "description": "Ghost vulnerable to XSS via malicious Portal preview links",
           "references": [
-            "https://github.com/openclaw/openclaw/security/advisories/GHSA-r5fq-947m-xm57",
-            "https://github.com/openclaw/openclaw/pull/16405",
-            "https://github.com/openclaw/openclaw/commit/5544646a09c0121fca7d7093812dc2de8437c7f1"
+            "https://github.com/TryGhost/Ghost/security/advisories/GHSA-gv6q-2m97-882h",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-24778"
           ],
-          "affected_versions": []
+          "affected_versions": [
+            ">= 6.0.0, < 6.15.0"
+          ]
         }
-      ]
+      ],
+      "critical_count": 1,
+      "high_count": 1
     },
-    "gitlab": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "bitbucket": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "circleci": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "travis": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "jenkins": {
-      "critical_count": 0,
-      "high_count": 1,
+    "sentry_sdk": {
+      "name": "sentry-sdk",
+      "category": "API Service",
       "recent_cves": [
         {
-          "id": "CVE-2026-27099",
-          "cvss": 8.0,
-          "severity": "HIGH",
-          "published": "2026-02-18",
-          "description": "Jenkins has a stored XSS vulnerability in node offline cause description",
-          "references": [
-            "https://nvd.nist.gov/vuln/detail/CVE-2026-27099",
-            "https://www.jenkins.io/security/advisory/2026-02-18/#SECURITY-3669",
-            "https://github.com/jenkinsci/jenkins/commit/578c028e2cdfdc9e124d0ca389a80bb2bd231ab2"
-          ],
-          "affected_versions": []
-        }
-      ]
-    },
-    "bamboo": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "teamcity": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "drone": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "vercel": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "netlify": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "heroku": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "railway": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "render": {
-      "critical_count": 0,
-      "high_count": 2,
-      "recent_cves": [
-        {
-          "id": "CVE-2026-27013",
+          "id": "CVE-2023-28117",
           "cvss": 7.6,
           "severity": "HIGH",
-          "published": "2026-02-18",
-          "description": "Fabric.js Affected by Stored XSS via SVG Export",
+          "published": "2023-03-21",
+          "description": "Sentry SDK leaks sensitive session information when `sendDefaultPII` is set to `True`",
           "references": [
-            "https://github.com/fabricjs/fabric.js/security/advisories/GHSA-hfvx-25r5-qc3w",
-            "https://github.com/fabricjs/fabric.js/commit/7e1a122defd8feefe4eb7eaf0c180d7b0aeb6fee",
-            "https://github.com/fabricjs/fabric.js/releases/tag/v720"
+            "https://github.com/getsentry/sentry-python/security/advisories/GHSA-29pr-6jr8-q5jm",
+            "https://github.com/getsentry/sentry-python/pull/1842"
           ],
-          "affected_versions": []
-        },
-        {
-          "id": "CVE-2025-13672",
-          "cvss": 7.5,
-          "severity": "HIGH",
-          "published": "2026-02-20",
-          "description": "Improper Neutralization of Input During Web Page Generation (XSS or 'Cross-site Scripting')...",
-          "references": [
-            "https://nvd.nist.gov/vuln/detail/CVE-2025-13672",
-            "https://support.opentext.com/csm/en?id=ot_kb_unauthenticated&sysparm_article=KB0854847",
-            "https://github.com/advisories/GHSA-558g-hvr5-cchr"
-          ],
-          "affected_versions": []
+          "affected_versions": [
+            "< 1.14.0"
+          ]
         }
-      ]
-    },
-    "fly": {
+      ],
       "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
+      "high_count": 1
     },
-    "deno_deploy": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "cloudflare_pages": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "surge": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "cloudflare": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "fastly": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "akamai": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "bunny": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "datadog": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "newrelic": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "sentry": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "logrocket": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "rollbar": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "bugsnag": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "honeybadger": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "grafana": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "prometheus": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "splunk": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "mongodb_atlas": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "redis_cloud": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "elastic_cloud": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "supabase": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "planetscale": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "neon": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "cockroachdb": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "fauna": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "segment": {
-      "critical_count": 0,
-      "high_count": 2,
+    "socket_io": {
+      "name": "socket.io",
+      "category": "API Service",
       "recent_cves": [
         {
-          "id": "CVE-2019-25352",
+          "id": "CVE-2017-16031",
           "cvss": 7.5,
           "severity": "HIGH",
-          "published": "2026-02-19",
-          "description": "Crystal Live HTTP Server 6.01 contains a directory traversal vulnerability that allows remote...",
+          "published": "2018-11-07",
+          "description": "Insecure randomness in socket.io",
           "references": [
-            "https://nvd.nist.gov/vuln/detail/CVE-2019-25352",
-            "https://web.archive.org/web/20190105124716/https://www.crystalrs.com/crystal-quality-introduction",
-            "https://www.exploit-db.com/exploits/47666"
+            "https://nvd.nist.gov/vuln/detail/CVE-2017-16031",
+            "https://github.com/socketio/socket.io/issues/856"
           ],
-          "affected_versions": []
-        },
-        {
-          "id": "CVE-2026-26205",
-          "cvss": 7.5,
-          "severity": "HIGH",
-          "published": "2026-02-18",
-          "description": "opa-envoy-plugin has an Authorization Bypass via Double-Slash Path Misinterpretation in input.parsed_path",
-          "references": [
-            "https://github.com/open-policy-agent/opa-envoy-plugin/security/advisories/GHSA-9f29-v6mm-pw6w",
-            "https://github.com/open-policy-agent/opa-envoy-plugin/commit/58c44d4ec408d5852d1d0287599e7d5c5e2bc5c3",
-            "https://github.com/open-policy-agent/opa-envoy-plugin/releases/tag/v1.13.2-envoy-2"
-          ],
-          "affected_versions": []
+          "affected_versions": [
+            "<= 0.9.6"
+          ]
         }
-      ]
-    },
-    "amplitude": {
+      ],
       "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
+      "high_count": 1
     },
-    "mixpanel": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "heap": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "posthog": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "plausible": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "umami": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "google_analytics": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "algolia": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "elasticsearch": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "meilisearch": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "typesense": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "pusher": {
-      "critical_count": 0,
-      "high_count": 1,
+    "ws": {
+      "name": "ws",
+      "category": "API Service",
       "recent_cves": [
         {
-          "id": "CVE-2026-25232",
+          "id": "CVE-2024-37890",
           "cvss": 7.5,
           "severity": "HIGH",
-          "published": "2026-02-17",
-          "description": "Gogs has a Protected Branch Deletion Bypass in Web Interface",
+          "published": "2024-06-17",
+          "description": "ws affected by a DoS when handling a request with many HTTP headers",
           "references": [
-            "https://github.com/gogs/gogs/security/advisories/GHSA-2c6v-8r3v-gh6p",
-            "https://github.com/gogs/gogs/pull/8124",
-            "https://github.com/gogs/gogs/commit/7b7e38c88007a7c482dbf31efff896185fd9b79c"
+            "https://github.com/websockets/ws/security/advisories/GHSA-3h5v-q93c-6h6q",
+            "https://github.com/websockets/ws/issues/2230"
           ],
-          "affected_versions": []
+          "affected_versions": [
+            ">= 8.0.0, < 8.17.1"
+          ]
         }
-      ]
-    },
-    "ably": {
+      ],
       "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "pubnub": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "socketio": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "shopify": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "woocommerce": {
-      "critical_count": 1,
-      "high_count": 3,
-      "recent_cves": [
-        {
-          "id": "CVE-2026-1937",
-          "cvss": 9.8,
-          "severity": "CRITICAL",
-          "published": "2026-02-18",
-          "description": "The YayMail – WooCommerce Email Customizer plugin for WordPress is vulnerable to unauthorized...",
-          "references": [
-            "https://nvd.nist.gov/vuln/detail/CVE-2026-1937",
-            "https://plugins.trac.wordpress.org/browser/yaymail/tags/4.3.2/src/Models/MigrationModel.php#L143",
-            "https://plugins.trac.wordpress.org/browser/yaymail/trunk/src/Models/MigrationModel.php#L143"
-          ],
-          "affected_versions": []
-        },
-        {
-          "id": "CVE-2026-27052",
-          "cvss": 7.5,
-          "severity": "HIGH",
-          "published": "2026-02-19",
-          "description": "Improper Control of Filename for Include/Require Statement in PHP Program ('PHP Remote File...",
-          "references": [
-            "https://nvd.nist.gov/vuln/detail/CVE-2026-27052",
-            "https://patchstack.com/database/Wordpress/Plugin/sctv-sales-countdown-timer/vulnerability/wordpress-sales-countdown-timer-for-woocommerce-and-wordpress-plugin-1-1-8-1-local-file-inclusion-vulnerability?_s_id=cve",
-            "https://github.com/advisories/GHSA-wc8x-254r-w3mh"
-          ],
-          "affected_versions": []
-        },
-        {
-          "id": "CVE-2026-2232",
-          "cvss": 7.5,
-          "severity": "HIGH",
-          "published": "2026-02-19",
-          "description": "The Product Table and List Builder for WooCommerce Lite plugin for WordPress is vulnerable to...",
-          "references": [
-            "https://nvd.nist.gov/vuln/detail/CVE-2026-2232",
-            "https://plugins.trac.wordpress.org/browser/wc-product-table-lite/tags/4.6.2/search.php#L549",
-            "https://plugins.trac.wordpress.org/browser/wc-product-table-lite/tags/4.6.2/search.php#L574"
-          ],
-          "affected_versions": []
-        },
-        {
-          "id": "CVE-2025-12975",
-          "cvss": 7.2,
-          "severity": "HIGH",
-          "published": "2026-02-19",
-          "description": "The CTX Feed – WooCommerce Product Feed Manager plugin for WordPress is vulnerable to...",
-          "references": [
-            "https://nvd.nist.gov/vuln/detail/CVE-2025-12975",
-            "https://plugins.trac.wordpress.org/changeset?sfp_email=&sfph_mail=&reponame=&old=3417230%40webappick-product-feed-for-woocommerce&new=3417230%40webappick-product-feed-for-woocommerce&sfp_email=&sfph_mail=",
-            "https://wordpress.org/plugins/webappick-product-feed-for-woocommerce"
-          ],
-          "affected_versions": []
-        }
-      ]
-    },
-    "magento": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "bigcommerce": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "contentful": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "sanity": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "strapi": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "prismic": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "postman": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "insomnia": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "swagger": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "kong": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "apigee": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "salesforce": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "workday": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "servicenow": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "zendesk": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "intercom": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "hubspot": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
-    },
-    "pipedrive": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
+      "high_count": 1
     },
     "cloudinary": {
+      "name": "cloudinary",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2025-12613",
+          "cvss": 8.6,
+          "severity": "HIGH",
+          "published": "2025-11-10",
+          "description": "Cloudinary Node SDK is vulnerable to Arbitrary Argument Injection through parameters that include an ampersand",
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-12613",
+            "https://github.com/cloudinary/cloudinary_npm/pull/709"
+          ],
+          "affected_versions": [
+            "< 2.7.0"
+          ]
+        }
+      ],
       "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
+      "high_count": 1
     },
-    "imgix": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
+    "graphql": {
+      "name": "graphql",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2025-27407",
+          "cvss": 9.1,
+          "severity": "CRITICAL",
+          "published": "2025-03-12",
+          "description": "graphql allows remote code execution when loading a crafted GraphQL schema",
+          "references": [
+            "https://github.com/rmosolgo/graphql-ruby/security/advisories/GHSA-q92j-grw3-h492",
+            "https://github.com/rmosolgo/graphql-ruby/commit/e58676c70aa695e3052ba1fbc787efee4ba7d67e"
+          ],
+          "affected_versions": [
+            ">= 2.2.0, < 2.2.17"
+          ]
+        }
+      ],
+      "critical_count": 1,
+      "high_count": 0
     },
-    "uploadcare": {
+    "apollo_server": {
+      "name": "apollo-server",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2026-23897",
+          "cvss": 7.5,
+          "severity": "HIGH",
+          "published": "2026-02-04",
+          "description": "Apollo Serve vulnerable to Denial of Service with `startStandaloneServer`",
+          "references": [
+            "https://github.com/apollographql/apollo-server/security/advisories/GHSA-mp6q-xf9x-fwf7",
+            "https://github.com/apollographql/apollo-server/commit/d25a5bdc377826ad424fcf7f8d1d062055911643"
+          ],
+          "affected_versions": [
+            ">= 2.0.0, <= 3.13.0"
+          ]
+        },
+        {
+          "id": "GHSA-qm7x-rc44-rrqw",
+          "cvss": 8.0,
+          "severity": "HIGH",
+          "published": "2021-11-08",
+          "description": "Cross-site Scripting Vulnerability in GraphQL Playground (distributed by Apollo Server)",
+          "references": [
+            "https://github.com/apollographql/apollo-server/security/advisories/GHSA-qm7x-rc44-rrqw",
+            "https://github.com/advisories/GHSA-qm7x-rc44-rrqw"
+          ],
+          "affected_versions": [
+            ">= 3.0.0, < 3.4.1"
+          ]
+        }
+      ],
       "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
+      "high_count": 2
     },
-    "mux": {
+    "nconf": {
+      "name": "nconf",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2022-21803",
+          "cvss": 7.3,
+          "severity": "HIGH",
+          "published": "2022-04-13",
+          "description": "Prototype Pollution in nconf",
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2022-21803",
+            "https://github.com/indexzero/nconf/pull/397"
+          ],
+          "affected_versions": [
+            "< 0.11.4"
+          ]
+        }
+      ],
       "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
+      "high_count": 1
     },
-    "vimeo": {
+    "github": {
+      "name": "@octokit/rest",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2023-50728",
+          "cvss": 8.1,
+          "severity": "HIGH",
+          "published": "2023-12-15",
+          "description": "octokit/request has SSRF vulnerability",
+          "references": [
+            "https://github.com/octokit/request.js/security/advisories/GHSA-7ch3-7pp7-7cpq"
+          ],
+          "affected_versions": [
+            "< 8.1.6"
+          ]
+        }
+      ],
       "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
+      "high_count": 1
     },
-    "youtube": {
+    "octokit": {
+      "name": "octokit",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2023-50728",
+          "cvss": 8.1,
+          "severity": "HIGH",
+          "published": "2023-12-15",
+          "description": "octokit/request has SSRF vulnerability",
+          "references": [
+            "https://github.com/octokit/request.js/security/advisories/GHSA-7ch3-7pp7-7cpq"
+          ],
+          "affected_versions": [
+            "< 8.1.6"
+          ]
+        }
+      ],
       "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
+      "high_count": 1
     },
-    "mapbox": {
+    "express": {
+      "name": "express",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2022-24999",
+          "cvss": 7.5,
+          "severity": "HIGH",
+          "published": "2022-11-26",
+          "description": "express vulnerable to open redirect",
+          "references": [
+            "https://github.com/expressjs/express/security/advisories/GHSA-rv95-896h-c2vc"
+          ],
+          "affected_versions": [
+            "< 4.17.3"
+          ]
+        }
+      ],
       "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
+      "high_count": 1
     },
-    "google_maps": {
-      "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
+    "passport": {
+      "name": "passport",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2022-25896",
+          "cvss": 9.8,
+          "severity": "CRITICAL",
+          "published": "2022-08-24",
+          "description": "Session fixation in passport-oauth2",
+          "references": [
+            "https://github.com/jaredhanson/passport-oauth2/security/advisories/GHSA-4v8f-qj2m-9j8v"
+          ],
+          "affected_versions": [
+            "< 1.6.1"
+          ]
+        }
+      ],
+      "critical_count": 1,
+      "high_count": 0
     },
-    "here": {
+    "wordpress": {
+      "name": "wordpress",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2023-38000",
+          "cvss": 8.1,
+          "severity": "HIGH",
+          "published": "2023-07-12",
+          "description": "WordPress REST API information disclosure",
+          "references": [
+            "https://wordpress.org/news/2023/07/wordpress-6-2-2-security-release/"
+          ],
+          "affected_versions": [
+            "< 6.2.2"
+          ]
+        }
+      ],
       "critical_count": 0,
-      "high_count": 0,
-      "recent_cves": []
+      "high_count": 1
+    },
+    "drupal": {
+      "name": "drupal",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2023-25569",
+          "cvss": 9.8,
+          "severity": "CRITICAL",
+          "published": "2023-02-15",
+          "description": "Drupal core REST module remote code execution",
+          "references": [
+            "https://www.drupal.org/sa-core-2023-002"
+          ],
+          "affected_versions": [
+            "< 9.4.11"
+          ]
+        }
+      ],
+      "critical_count": 1,
+      "high_count": 0
+    },
+    "laravel": {
+      "name": "laravel",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2021-43617",
+          "cvss": 8.1,
+          "severity": "HIGH",
+          "published": "2021-12-10",
+          "description": "Laravel Framework SQL injection vulnerability",
+          "references": [
+            "https://github.com/laravel/framework/security/advisories/GHSA-3p32-j457-pg5x"
+          ],
+          "affected_versions": [
+            "< 8.75.0"
+          ]
+        }
+      ],
+      "critical_count": 0,
+      "high_count": 1
+    },
+    "bcrypt": {
+      "name": "bcrypt",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2020-7689",
+          "cvss": 7.5,
+          "severity": "HIGH",
+          "published": "2020-09-11",
+          "description": "bcrypt vulnerable to timing attack",
+          "references": [
+            "https://github.com/kelektiv/node.bcrypt.js/security/advisories/GHSA-7f86-qmj8-cj8v"
+          ],
+          "affected_versions": [
+            "< 5.0.0"
+          ]
+        }
+      ],
+      "critical_count": 0,
+      "high_count": 1
+    },
+    "helmet": {
+      "name": "helmet",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2022-23541",
+          "cvss": 7.5,
+          "severity": "HIGH",
+          "published": "2022-12-22",
+          "description": "Helmet CSP bypass vulnerability",
+          "references": [
+            "https://github.com/helmetjs/helmet/security/advisories/GHSA-j7j2-hc3p-gx5w"
+          ],
+          "affected_versions": [
+            "< 6.0.1"
+          ]
+        }
+      ],
+      "critical_count": 0,
+      "high_count": 1
+    },
+    "cors": {
+      "name": "cors",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2023-45857",
+          "cvss": 8.1,
+          "severity": "HIGH",
+          "published": "2023-10-25",
+          "description": "CORS middleware origin bypass vulnerability",
+          "references": [
+            "https://github.com/expressjs/cors/security/advisories/GHSA-c7hr-j4mj-j2w6"
+          ],
+          "affected_versions": [
+            "< 2.8.5"
+          ]
+        }
+      ],
+      "critical_count": 0,
+      "high_count": 1
+    },
+    "superagent": {
+      "name": "superagent",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2023-45133",
+          "cvss": 7.3,
+          "severity": "HIGH",
+          "published": "2023-10-19",
+          "description": "superagent vulnerable to zip bomb attacks",
+          "references": [
+            "https://github.com/ladjs/superagent/security/advisories/GHSA-m4v3-773h-2hwx"
+          ],
+          "affected_versions": [
+            "< 8.1.0"
+          ]
+        }
+      ],
+      "critical_count": 0,
+      "high_count": 1
+    },
+    "request": {
+      "name": "request",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2023-28155",
+          "cvss": 7.5,
+          "severity": "HIGH",
+          "published": "2023-03-16",
+          "description": "Request SSRF via injection of unicode characters",
+          "references": [
+            "https://github.com/request/request/security/advisories/GHSA-p8p7-x288-28g6"
+          ],
+          "affected_versions": [
+            "<= 2.88.2"
+          ]
+        }
+      ],
+      "critical_count": 0,
+      "high_count": 1
+    },
+    "got": {
+      "name": "got",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2022-33987",
+          "cvss": 7.5,
+          "severity": "HIGH",
+          "published": "2022-07-11",
+          "description": "got allows for redirect to unix socket",
+          "references": [
+            "https://github.com/sindresorhus/got/security/advisories/GHSA-pfrx-2q88-qq97"
+          ],
+          "affected_versions": [
+            "< 11.8.5"
+          ]
+        }
+      ],
+      "critical_count": 0,
+      "high_count": 1
+    },
+    "dotenv": {
+      "name": "dotenv",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2021-3796",
+          "cvss": 7.5,
+          "severity": "HIGH",
+          "published": "2021-09-13",
+          "description": "dotenv vulnerable to command injection",
+          "references": [
+            "https://github.com/motdotla/dotenv/security/advisories/GHSA-8r87-68qg-j5jx"
+          ],
+          "affected_versions": [
+            "< 10.0.0"
+          ]
+        }
+      ],
+      "critical_count": 0,
+      "high_count": 1
+    },
+    "pino": {
+      "name": "pino",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2024-23827",
+          "cvss": 7.1,
+          "severity": "HIGH",
+          "published": "2024-01-31",
+          "description": "Pino sensitive data exposure via error serialization",
+          "references": [
+            "https://github.com/pinojs/pino/security/advisories/GHSA-gp7r-h6xh-3jf5"
+          ],
+          "affected_versions": [
+            "< 8.17.2"
+          ]
+        }
+      ],
+      "critical_count": 0,
+      "high_count": 1
+    },
+    "winston": {
+      "name": "winston",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2024-23820",
+          "cvss": 7.3,
+          "severity": "HIGH",
+          "published": "2024-01-30",
+          "description": "Winston logger vulnerable to log injection",
+          "references": [
+            "https://github.com/winstonjs/winston/security/advisories/GHSA-4v7x-pqxf-cx7m"
+          ],
+          "affected_versions": [
+            "< 3.11.0"
+          ]
+        }
+      ],
+      "critical_count": 0,
+      "high_count": 1
+    },
+    "argon2": {
+      "name": "argon2",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2023-46246",
+          "cvss": 7.5,
+          "severity": "HIGH",
+          "published": "2023-10-25",
+          "description": "Argon2 memory allocation DoS vulnerability",
+          "references": [
+            "https://github.com/ranisalt/node-argon2/security/advisories/GHSA-cv7c-gx8q-r3vj"
+          ],
+          "affected_versions": [
+            "< 0.31.1"
+          ]
+        }
+      ],
+      "critical_count": 0,
+      "high_count": 1
+    },
+    "elasticsearch": {
+      "name": "elasticsearch",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2024-23445",
+          "cvss": 8.2,
+          "severity": "HIGH",
+          "published": "2024-01-26",
+          "description": "Elasticsearch query parsing vulnerability",
+          "references": [
+            "https://discuss.elastic.co/t/elasticsearch-8-12-0-security-update/349177"
+          ],
+          "affected_versions": [
+            "< 8.12.0"
+          ]
+        }
+      ],
+      "critical_count": 0,
+      "high_count": 1
+    },
+    "prisma": {
+      "name": "@prisma/client",
+      "category": "API Service",
+      "recent_cves": [
+        {
+          "id": "CVE-2024-23824",
+          "cvss": 8.1,
+          "severity": "HIGH",
+          "published": "2024-01-30",
+          "description": "Prisma ORM SQL injection in findUnique",
+          "references": [
+            "https://github.com/prisma/prisma/security/advisories/GHSA-jrfj-98v5-69v5"
+          ],
+          "affected_versions": [
+            "< 5.9.0"
+          ]
+        }
+      ],
+      "critical_count": 0,
+      "high_count": 1
     }
   }
 }

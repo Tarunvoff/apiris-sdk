@@ -21,7 +21,7 @@ from rich import box
 from .client import ApirisClient
 from .config import load_config
 
-__version__ = "1.0.0"
+__version__ = "1.0.2"
 
 def get_package_models_dir() -> Path:
     """Get the models directory from the installed package."""
