@@ -3,6 +3,7 @@
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![PyPI version](https://badge.fury.io/py/apiris.svg)](https://pypi.org/project/apiris/)
+[![PyPI Downloads](https://static.pepy.tech/personalized-badge/apiris?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads)](https://pepy.tech/projects/apiris)
 
 **Apiris** (Contextual API Decision Lens) is an intelligent SDK that provides real-time decision intelligence for API traffic. It predicts latency, detects anomalies, recommends optimal configurations, and provides security advisories—all without modifying your application code.
 
