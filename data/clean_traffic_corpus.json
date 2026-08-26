@@ -1,0 +1,171 @@
+{
+  "version": "1.1.0",
+  "description": "Synthetic API Traffic Corpus for Apiris CAD Threshold Calibration and Verification",
+  "generated_at": "2026-08-27T00:00:00Z",
+  "clean_samples": [
+    {
+      "id": "clean_weather_01",
+      "api": "api.weather.io",
+      "method": "GET",
+      "url": "https://api.weather.io/v1/current?city=Seattle",
+      "latency_ms": 42,
+      "status": 200,
+      "headers": {"content-type": "application/json", "cache-control": "max-age=60"},
+      "body": "{\"city\": \"Seattle\", \"temperature_c\": 18.5, \"humidity\": 65, \"conditions\": \"Partly Cloudy\", \"timestamp\": 1772000000}"
+    },
+    {
+      "id": "clean_weather_02",
+      "api": "api.weather.io",
+      "method": "GET",
+      "url": "https://api.weather.io/v1/current?city=Austin",
+      "latency_ms": 48,
+      "status": 200,
+      "headers": {"content-type": "application/json", "cache-control": "max-age=60"},
+      "body": "{\"city\": \"Austin\", \"temperature_c\": 29.2, \"humidity\": 45, \"conditions\": \"Sunny\", \"timestamp\": 1772000005}"
+    },
+    {
+      "id": "clean_weather_03",
+      "api": "api.weather.io",
+      "method": "GET",
+      "url": "https://api.weather.io/v1/current?city=Tokyo",
+      "latency_ms": 115,
+      "status": 200,
+      "headers": {"content-type": "application/json", "cache-control": "max-age=60"},
+      "body": "{\"city\": \"Tokyo\", \"temperature_c\": 22.0, \"humidity\": 70, \"conditions\": \"Clear\", \"timestamp\": 1772000010}"
+    },
+    {
+      "id": "clean_payment_01",
+      "api": "api.payments.net",
+      "method": "POST",
+      "url": "https://api.payments.net/v1/charges",
+      "latency_ms": 85,
+      "status": 200,
+      "headers": {"content-type": "application/json"},
+      "body": "{\"charge_id\": \"ch_990123\", \"status\": \"succeeded\", \"amount_cents\": 4999, \"currency\": \"usd\", \"customer_id\": \"cus_4412\"}"
+    },
+    {
+      "id": "clean_payment_02",
+      "api": "api.payments.net",
+      "method": "POST",
+      "url": "https://api.payments.net/v1/charges",
+      "latency_ms": 92,
+      "status": 200,
+      "headers": {"content-type": "application/json"},
+      "body": "{\"charge_id\": \"ch_990124\", \"status\": \"succeeded\", \"amount_cents\": 1250, \"currency\": \"usd\", \"customer_id\": \"cus_8891\"}"
+    },
+    {
+      "id": "clean_auth_01",
+      "api": "auth.enterprise.org",
+      "method": "GET",
+      "url": "https://auth.enterprise.org/v2/userinfo",
+      "latency_ms": 35,
+      "status": 200,
+      "headers": {"content-type": "application/json"},
+      "body": "{\"sub\": \"usr_88219\", \"name\": \"Alex Chen\", \"email\": \"alex@enterprise.org\", \"roles\": [\"developer\", \"auditor\"]}"
+    },
+    {
+      "id": "clean_auth_02",
+      "api": "auth.enterprise.org",
+      "method": "GET",
+      "url": "https://auth.enterprise.org/v2/userinfo",
+      "latency_ms": 39,
+      "status": 200,
+      "headers": {"content-type": "application/json"},
+      "body": "{\"sub\": \"usr_88220\", \"name\": \"Sarah Miller\", \"email\": \"sarah@enterprise.org\", \"roles\": [\"admin\"]}"
+    },
+    {
+      "id": "clean_market_01",
+      "api": "market.exchange.co",
+      "method": "GET",
+      "url": "https://market.exchange.co/v1/ticker?pair=BTC-USD",
+      "latency_ms": 55,
+      "status": 200,
+      "headers": {"content-type": "application/json", "cache-control": "max-age=5"},
+      "body": "{\"pair\": \"BTC-USD\", \"bid\": 64500.5, \"ask\": 64501.0, \"volume_24h\": 12850.2, \"last\": 64500.8}"
+    },
+    {
+      "id": "clean_market_02",
+      "api": "market.exchange.co",
+      "method": "GET",
+      "url": "https://market.exchange.co/v1/ticker?pair=ETH-USD",
+      "latency_ms": 52,
+      "status": 200,
+      "headers": {"content-type": "application/json", "cache-control": "max-age=5"},
+      "body": "{\"pair\": \"ETH-USD\", \"bid\": 3450.2, \"ask\": 3450.8, \"volume_24h\": 45210.0, \"last\": 3450.5}"
+    },
+    {
+      "id": "clean_telemetry_01",
+      "api": "telemetry.cloud.internal",
+      "method": "GET",
+      "url": "https://telemetry.cloud.internal/v1/health",
+      "latency_ms": 22,
+      "status": 200,
+      "headers": {"content-type": "application/json"},
+      "body": "{\"status\": \"healthy\", \"uptime_sec\": 864200, \"active_workers\": 16, \"memory_used_mb\": 512, \"cpu_load\": 0.18}"
+    },
+    {
+      "id": "clean_telemetry_02",
+      "api": "telemetry.cloud.internal",
+      "method": "GET",
+      "url": "https://telemetry.cloud.internal/v1/health",
+      "latency_ms": 25,
+      "status": 200,
+      "headers": {"content-type": "application/json"},
+      "body": "{\"status\": \"healthy\", \"uptime_sec\": 864230, \"active_workers\": 16, \"memory_used_mb\": 518, \"cpu_load\": 0.22}"
+    },
+    {
+      "id": "clean_nasa_01",
+      "api": "api.nasa.gov",
+      "method": "GET",
+      "url": "https://api.nasa.gov/planetary/apod",
+      "latency_ms": 110,
+      "status": 200,
+      "headers": {"content-type": "application/json"},
+      "body": "{\"title\": \"M31: The Andromeda Galaxy\", \"date\": \"2026-08-26\", \"explanation\": \"The nearest major galaxy to our Milky Way...\", \"media_type\": \"image\", \"url\": \"https://apod.nasa.gov/apod/image/2608/m31.jpg\"}"
+    }
+  ],
+  "degraded_samples": [
+    {
+      "id": "deg_latency_01",
+      "api": "api.weather.io",
+      "method": "GET",
+      "url": "https://api.weather.io/v1/current?city=SlowCity",
+      "latency_ms": 1850,
+      "status": 200,
+      "headers": {"content-type": "application/json"},
+      "body": "{\"city\": \"SlowCity\", \"temperature_c\": 15.0}"
+    },
+    {
+      "id": "deg_server_error_01",
+      "api": "api.payments.net",
+      "method": "POST",
+      "url": "https://api.payments.net/v1/charges",
+      "latency_ms": 220,
+      "status": 503,
+      "headers": {"content-type": "application/json"},
+      "body": "{\"error\": \"Service Temporarily Unavailable\"}"
+    }
+  ],
+  "adversarial_samples": [
+    {
+      "id": "adv_confidentiality_leak",
+      "api": "auth.enterprise.org",
+      "method": "GET",
+      "url": "https://auth.enterprise.org/v2/userinfo",
+      "latency_ms": 40,
+      "status": 200,
+      "headers": {"content-type": "application/json", "set-cookie": "session_token=xyz999; HttpOnly"},
+      "body": "{\"sub\": \"usr_88219\", \"password_hash\": \"$2b$12$e8x...\", \"api_key\": \"sk_live_secret991823\"}"
+    },
+    {
+      "id": "adv_auth_token_leak",
+      "api": "api.payments.net",
+      "method": "POST",
+      "url": "https://api.payments.net/v1/charges",
+      "latency_ms": 75,
+      "status": 200,
+      "headers": {"content-type": "application/json"},
+      "body": "{\"charge_id\": \"ch_990125\", \"secret_token\": \"sk_secret_991882\", \"auth_cookie\": \"sess_1122\"}"
+    }
+  ]
+}

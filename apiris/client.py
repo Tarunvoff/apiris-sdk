@@ -43,9 +43,15 @@ class ApirisResponse:
     confidence: float
     status_code: Optional[int]
     headers: Dict[str, Any]
-    raw: Optional[str]
+    raw: Optional[str] = None
     scoring_factors: Optional[Dict[str, Any]] = None
     cve_advisory: Optional[CVEAdvisory] = None
+
+
+# Backward compatibility aliases for pre-v1.0.2 integrators
+CADDecision = ApirisDecision
+CADSummary = ApirisSummary
+CADResponse = ApirisResponse
 
 
 class ApirisClient:
@@ -85,7 +91,17 @@ class ApirisClient:
             "anomalies": f"{self.config.log_dir}/cad_anomalies.jsonl",
         }
 
-    def get(self, url: str, params: Optional[Dict[str, Any]] = None, headers: Optional[Dict[str, str]] = None, timeout: float = 5.0) -> ApirisResponse:
+    def request(
+        self,
+        method: str,
+        url: str,
+        params: Optional[Dict[str, Any]] = None,
+        data: Optional[Any] = None,
+        json_data: Optional[Any] = None,
+        headers: Optional[Dict[str, str]] = None,
+        timeout: float = 5.0,
+        **kwargs: Any,
+    ) -> ApirisResponse:
         request_id = uuid.uuid4().hex
         started_at = time.time()
         parsed_url = urlparse(url)
@@ -98,8 +114,19 @@ class ApirisClient:
         status_code: Optional[int] = None
         response_headers: Dict[str, Any] = {}
 
+        method_upper = method.upper()
+
         try:
-            res = self.session.get(url, params=params, headers=headers, timeout=timeout)
+            res = self.session.request(
+                method=method_upper,
+                url=url,
+                params=params,
+                data=data,
+                json=json_data,
+                headers=headers,
+                timeout=timeout,
+                **kwargs,
+            )
             raw_text = res.text
             status_code = res.status_code
             response_headers = dict(res.headers)
@@ -116,7 +143,7 @@ class ApirisClient:
         timing_ms = int((time.time() - started_at) * 1000)
 
         request_payload = {
-            "method": "GET",
+            "method": method_upper,
             "url": url,
             "headers": headers or {},
             "params": params or {},
@@ -235,3 +262,19 @@ class ApirisClient:
             scoring_factors=scoring_factors,
             cve_advisory=cve_advisory,
         )
+
+    def get(self, url: str, params: Optional[Dict[str, Any]] = None, headers: Optional[Dict[str, str]] = None, timeout: float = 5.0, **kwargs: Any) -> ApirisResponse:
+        return self.request("GET", url, params=params, headers=headers, timeout=timeout, **kwargs)
+
+    def post(self, url: str, data: Optional[Any] = None, json: Optional[Any] = None, params: Optional[Dict[str, Any]] = None, headers: Optional[Dict[str, str]] = None, timeout: float = 5.0, **kwargs: Any) -> ApirisResponse:
+        return self.request("POST", url, params=params, data=data, json_data=json, headers=headers, timeout=timeout, **kwargs)
+
+    def put(self, url: str, data: Optional[Any] = None, json: Optional[Any] = None, params: Optional[Dict[str, Any]] = None, headers: Optional[Dict[str, str]] = None, timeout: float = 5.0, **kwargs: Any) -> ApirisResponse:
+        return self.request("PUT", url, params=params, data=data, json_data=json, headers=headers, timeout=timeout, **kwargs)
+
+    def delete(self, url: str, params: Optional[Dict[str, Any]] = None, headers: Optional[Dict[str, str]] = None, timeout: float = 5.0, **kwargs: Any) -> ApirisResponse:
+        return self.request("DELETE", url, params=params, headers=headers, timeout=timeout, **kwargs)
+
+
+CADClient = ApirisClient
+

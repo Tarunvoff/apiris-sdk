@@ -23,6 +23,7 @@ DEFAULT_PROFILE = {
     "latency_budget_ms": 1000,
     "prefer": "availability",
     "delay_ms": 400,
+    "hysteresis_band": 0.05,
 }
 
 
@@ -65,6 +66,7 @@ def _mask_sensitive_fields(value: Any, depth: int = 0, max_depth: int = 6) -> An
 class DecisionEngineState:
     window: list = field(default_factory=list)
     cache: Optional[ResponseCache] = None
+    last_action: Optional[str] = None
 
 
 class DecisionEngine:
@@ -86,6 +88,7 @@ class DecisionEngine:
                 "integrity_threshold": self.config.integrity_threshold,
                 "availability_delay_threshold": self.config.availability_threshold,
                 "latency_budget_ms": self.config.latency_budget_ms,
+                "hysteresis_band": getattr(self.config, "hysteresis_band", 0.05),
             }
         )
         profile.update(self.profiles.get(api, {}))
@@ -308,37 +311,35 @@ class DecisionEngine:
             }
         return None
 
-    def _choose_action(self, scores: Dict[str, Any], profile: Dict[str, Any]) -> Dict[str, str]:
+    def _choose_action(self, scores: Dict[str, Any], profile: Dict[str, Any], previous_action: Optional[str] = None) -> Dict[str, str]:
         c_score = scores["C_score"]
         a_score = scores["A_score"]
         d_score = scores["D_score"]
+
+        c_thresh = profile.get("confidentiality_threshold") if profile.get("confidentiality_threshold") is not None else 0.0
+        a_thresh = profile.get("availability_threshold") if profile.get("availability_threshold") is not None else 0.0
+        d_thresh = profile.get("integrity_threshold") if profile.get("integrity_threshold") is not None else 0.0
+        delay_thresh = profile.get("availability_delay_threshold") if profile.get("availability_delay_threshold") is not None else a_thresh
+        h_band = profile.get("hysteresis_band", 0.05) if not getattr(self.config, "strict_zero_tolerance", False) else 0.0
+
         if self.config.mode == "strict":
             strict_action = self._enforce_integrity_priority(scores, profile)
             if strict_action:
                 return strict_action
 
-        if c_score < profile["confidentiality_threshold"]:
+        # Apply hysteresis to prevent action flapping on borderline noise
+        c_eff_thresh = (c_thresh + h_band) if previous_action == "mask_sensitive_fields" else c_thresh
+        a_eff_thresh = (a_thresh + h_band) if previous_action in {"serve_stale_cache", "downgrade_fidelity"} else a_thresh
+        d_eff_thresh = (d_thresh + h_band) if previous_action in {"reject_response", "downgrade_fidelity"} else d_thresh
+
+        if c_score < c_eff_thresh:
             return {
                 "action": "mask_sensitive_fields",
                 "tradeoff": "confidentiality_over_completeness",
-                "justification": f"C_score {c_score:.2f} below {profile['confidentiality_threshold']}",
+                "justification": f"C_score {c_score:.2f} below effective threshold {c_eff_thresh:.2f}",
             }
 
-        if a_score < profile["availability_threshold"] and d_score >= profile["integrity_threshold"]:
-            return {
-                "action": "serve_stale_cache",
-                "tradeoff": "availability_over_integrity",
-                "justification": f"A_score {a_score:.2f} below {profile['availability_threshold']} while D_score {d_score:.2f} >= {profile['integrity_threshold']}",
-            }
-
-        if d_score < profile["integrity_threshold"] and a_score >= profile["availability_threshold"]:
-            return {
-                "action": "reject_response",
-                "tradeoff": "integrity_over_availability",
-                "justification": f"D_score {d_score:.2f} below {profile['integrity_threshold']} while A_score {a_score:.2f} >= {profile['availability_threshold']}",
-            }
-
-        if a_score < profile["availability_threshold"] and d_score < profile["integrity_threshold"]:
+        if a_score < a_eff_thresh and d_score < d_eff_thresh:
             action = "serve_stale_cache" if profile["prefer"] == "availability" else "downgrade_fidelity"
             tradeoff = "availability_over_integrity" if profile["prefer"] == "availability" else "integrity_over_availability"
             return {
@@ -347,11 +348,25 @@ class DecisionEngine:
                 "justification": f"Both A_score {a_score:.2f} and D_score {d_score:.2f} below thresholds; prefer {profile['prefer']}",
             }
 
-        if a_score < profile["availability_delay_threshold"]:
+        if d_score < d_eff_thresh and a_score >= a_thresh:
+            return {
+                "action": "reject_response",
+                "tradeoff": "integrity_over_availability",
+                "justification": f"D_score {d_score:.2f} below {d_eff_thresh:.2f} while A_score {a_score:.2f} >= {a_thresh:.2f}",
+            }
+
+        if a_score < a_eff_thresh and d_score >= d_thresh:
+            return {
+                "action": "serve_stale_cache",
+                "tradeoff": "availability_over_integrity",
+                "justification": f"A_score {a_score:.2f} below {a_eff_thresh:.2f} while D_score {d_score:.2f} >= {d_thresh:.2f}",
+            }
+
+        if a_score < delay_thresh:
             return {
                 "action": "delay_response",
                 "tradeoff": "integrity_over_availability",
-                "justification": f"A_score {a_score:.2f} below {profile['availability_delay_threshold']}, apply delay",
+                "justification": f"A_score {a_score:.2f} below {delay_thresh:.2f}, apply delay",
             }
 
         return {
@@ -361,44 +376,38 @@ class DecisionEngine:
         }
 
     def _compute_confidence(self, scores: Dict[str, Any], scores_with_ai: Dict[str, Any], profile: Dict[str, Any], action: str, ai_used: bool) -> float:
-        def clamp(value: float) -> float:
-            return max(0.0, min(1.0, value))
+        def clamp(value: float, low: float = 0.0, high: float = 1.0) -> float:
+            return max(low, min(high, value))
 
-        def breach(score: float, threshold: Optional[float]) -> float:
-            if threshold is None or threshold <= 0:
-                return 0.0
-            if score >= threshold:
-                return 0.0
-            return clamp((threshold - score) / max(threshold, 1e-6))
+        c_thresh = profile.get("confidentiality_threshold") if profile.get("confidentiality_threshold") is not None else 0.40
+        a_thresh = profile.get("availability_threshold") if profile.get("availability_threshold") is not None else 0.40
+        d_thresh = profile.get("integrity_threshold") if profile.get("integrity_threshold") is not None else 0.40
 
-        thresholds = {
-            "C_score": profile["confidentiality_threshold"],
-            "A_score": profile["availability_threshold"],
-            "D_score": profile["integrity_threshold"],
-        }
-        in_bounds = all(
-            scores[key] >= (thresholds[key] if thresholds[key] is not None else 0.0)
-            for key in ("C_score", "A_score", "D_score")
-        )
+        c_score = scores.get("C_score", 1.0)
+        a_score = scores.get("A_score", 1.0)
+        d_score = scores.get("D_score", 1.0)
 
-        if action == "pass_through" and in_bounds:
-            base_confidence = 1.0
-        elif self.config.mode == "passive":
-            base_confidence = 1.0
-        elif self.config.mode == "strict" and scores["D_score"] < profile["integrity_threshold"]:
-            base_confidence = 1.0
-        else:
-            base_confidence = max(
-                breach(scores["C_score"], profile["confidentiality_threshold"]),
-                breach(scores["A_score"], profile["availability_threshold"]),
-                breach(scores["D_score"], profile["integrity_threshold"]),
-            )
+        # Distances from decision boundaries
+        c_dist = abs(c_score - c_thresh)
+        a_dist = abs(a_score - a_thresh)
+        d_dist = abs(d_score - d_thresh)
+
+        min_dist = min(c_dist, a_dist, d_dist)
+        margin = 0.30  # Normalizing distance margin
+
+        # Base confidence scales smoothly from 0.50 (on the boundary) to 1.00 (far from boundary)
+        cad_confidence = 0.50 + 0.50 * clamp(min_dist / margin)
 
         if ai_used:
-            ai_confidence = clamp(float(scores_with_ai.get("aiAnomalyAvg", 0.0)))
-            base_confidence = max(base_confidence, ai_confidence)
+            ai_avg = float(scores_with_ai.get("aiAnomalyAvg", 0.0))
+            ai_thresh = getattr(self.config, "anomaly_threshold", 0.70)
+            ai_dist = abs(ai_avg - ai_thresh)
+            ai_confidence = 0.50 + 0.50 * clamp(ai_dist / margin)
+            total_confidence = 0.70 * cad_confidence + 0.30 * ai_confidence
+        else:
+            total_confidence = cad_confidence
 
-        return round(clamp(base_confidence), 2)
+        return round(clamp(total_confidence, 0.50, 1.0), 2)
 
     def get_cache(self, api: str) -> Optional[ResponseCache]:
         return self._get_state(api).cache
@@ -529,7 +538,8 @@ class DecisionEngine:
         scores = self._compute_scores(aggregates, profile)
         if self.config.mode == "strict":
             profile = {**profile, "prefer": "integrity"}
-        decision_choice = self._choose_action(scores, profile)
+        decision_choice = self._choose_action(scores, profile, previous_action=api_state.last_action)
+        api_state.last_action = decision_choice["action"]
         if self.config.mode == "passive":
             decision_choice = {
                 "action": "pass_through",
