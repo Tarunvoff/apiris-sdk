@@ -21,18 +21,28 @@ from rich import box
 from .client import ApirisClient
 from .config import load_config
 
-__version__ = "1.0.2"
+__version__ = "1.1.0"
 
 def get_package_models_dir() -> Path:
     """Get the models directory from the installed package."""
     return Path(__file__).parent / "models"
+
+# Ensure UTF-8 output encoding on Windows consoles
+if sys.platform == "win32":
+    try:
+        if hasattr(sys.stdout, "reconfigure"):
+            sys.stdout.reconfigure(encoding="utf-8")
+        if hasattr(sys.stderr, "reconfigure"):
+            sys.stderr.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
 
 app = typer.Typer(
     name="Apiris",
     help="Apiris - Deterministic AI Reliability Intelligence SDK",
     add_completion=False,
 )
-console = Console()
+console = Console(legacy_windows=False if sys.platform == "win32" else None)
 
 
 @app.command()
@@ -40,7 +50,7 @@ def version():
     """
     Display Apiris SDK version information.
     """
-    console.print(f"[bold cyan]Apiris SDK[/bold cyan] version [bold green]1.0.0[/bold green]")
+    console.print(f"[bold cyan]Apiris SDK[/bold cyan] version [bold green]1.1.0[/bold green]")
     console.print("Deterministic AI Reliability Intelligence")
     console.print("https://github.com/Tarunvoff/apiris-sdk")
 

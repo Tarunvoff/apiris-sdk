@@ -156,8 +156,8 @@ def test_runtime_unaffected_by_intelligence_failure(tmp_path: Path, monkeypatch)
     def _raise(*args, **kwargs):
         raise RuntimeError("should_not_run")
 
-    monkeypatch.setattr("Apiris.intelligence.risk_aggregator.RiskAggregator.aggregate", _raise)
-    monkeypatch.setattr("Apiris.intelligence.drift_analyzer.DriftAnalyzer.analyze", _raise)
+    monkeypatch.setattr("apiris.intelligence.risk_aggregator.RiskAggregator.aggregate", _raise)
+    monkeypatch.setattr("apiris.intelligence.drift_analyzer.DriftAnalyzer.analyze", _raise)
 
     config_path = tmp_path / "config.yaml"
     config_path.write_text(

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import math
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 
 from .loader import load_json
 
@@ -154,10 +154,32 @@ class AnomalyScorer:
         self.soft_threshold = soft_threshold
         self.strong_threshold = strong_threshold
 
-    def score(self, api: str, parsed: Any, response_text: Optional[str], runtime_state: Dict[str, Dict[str, Any]], now_ms: int) -> Optional[Dict[str, Any]]:
-        api_model = self.models.get(api)
-        if not api_model:
+    def _resolve_model(self, api: str) -> Optional[Tuple[str, Dict[str, Any]]]:
+        if not self.models:
             return None
+        # 1. Exact match
+        if api in self.models:
+            return api, self.models[api]
+        # 2. Normalized match (e.g. coingecko-markets -> coingeckomarkets)
+        norm_api = api.lower().replace("-", "").replace("_", "").replace(".", "")
+        for key, m in self.models.items():
+            if norm_api == key.lower().replace("-", "").replace("_", "").replace(".", ""):
+                return key, m
+        # 3. Substring match
+        for key, m in self.models.items():
+            if key != "_global" and key != "default" and (key in api or api in key):
+                return key, m
+        # 4. Fallback to global model
+        for fallback_key in ("_global", "default", "global"):
+            if fallback_key in self.models:
+                return fallback_key, self.models[fallback_key]
+        return None
+
+    def score(self, api: str, parsed: Any, response_text: Optional[str], runtime_state: Dict[str, Dict[str, Any]], now_ms: int) -> Optional[Dict[str, Any]]:
+        resolved = self._resolve_model(api)
+        if not resolved:
+            return None
+        model_name, api_model = resolved
 
         if api not in runtime_state:
             runtime_state[api] = {
