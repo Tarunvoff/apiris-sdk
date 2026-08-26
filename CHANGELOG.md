@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Intelligence Plane Modules**: Cleanly backported `drift_analyzer.py`, `risk_aggregator.py`, `vendor_profile.py`, and `models.py` into `apiris.intelligence`.
 - **Comprehensive Calibration Report**: Checked in empirical before/after calibration metrics in `docs/CALIBRATION_REPORT.md`.
 - **Full HTTP Verb Support**: Added `request()`, `post()`, `put()`, `delete()` methods on `ApirisClient`.
+- **Extended Rich CLI Suite**: Added `apiris benchmark`, `apiris calibrate`, `apiris models list`, `apiris models train`, `apiris drift`, `apiris doctor` (CI-usable), and `apiris report` commands with standardized risk palettes, brand wordmark, factor trees, and non-TTY / NO_COLOR compliance.
 
 ### Changed
 - **Default Risk Thresholds**: Updated default thresholds from `0.0` to calibrated non-zero values (`integrity_threshold: 0.40`, `availability_threshold: 0.40`, `anomaly_threshold: 0.70`) to eliminate always-maximal-risk false positive readings on clean traffic.

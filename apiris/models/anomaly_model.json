@@ -14406,6 +14406,473 @@
         "maxDepth": 7
       },
       "derivation": "empirical_pooled_aggregate_v1.1.0"
+    },
+    "api.custom-weather.org": {
+      "sampleCount": 5,
+      "coreFields": [
+        "city",
+        "humidity",
+        "temperature"
+      ],
+      "mean": [
+        3.0,
+        0.0,
+        0.0,
+        0.0,
+        37.31,
+        15.09,
+        22.22,
+        52.4,
+        0.0,
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "std": [
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        1.7434,
+        3.3358,
+        1.8148,
+        5.004,
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "forest": {
+        "sampleSize": 5,
+        "trees": [
+          {
+            "leaf": true,
+            "size": 5
+          },
+          {
+            "leaf": false,
+            "feature": 7,
+            "split": 1.4235,
+            "left": {
+              "leaf": true,
+              "size": 4
+            },
+            "right": {
+              "leaf": true,
+              "size": 1
+            }
+          },
+          {
+            "leaf": false,
+            "feature": 7,
+            "split": -0.8417,
+            "left": {
+              "leaf": true,
+              "size": 1
+            },
+            "right": {
+              "leaf": true,
+              "size": 4
+            }
+          },
+          {
+            "leaf": true,
+            "size": 5
+          },
+          {
+            "leaf": false,
+            "feature": 4,
+            "split": 0.3001,
+            "left": {
+              "leaf": true,
+              "size": 3
+            },
+            "right": {
+              "leaf": true,
+              "size": 2
+            }
+          },
+          {
+            "leaf": false,
+            "feature": 7,
+            "split": -0.469,
+            "left": {
+              "leaf": true,
+              "size": 2
+            },
+            "right": {
+              "leaf": true,
+              "size": 3
+            }
+          },
+          {
+            "leaf": false,
+            "feature": 7,
+            "split": 1.349,
+            "left": {
+              "leaf": true,
+              "size": 4
+            },
+            "right": {
+              "leaf": true,
+              "size": 1
+            }
+          },
+          {
+            "leaf": true,
+            "size": 5
+          },
+          {
+            "leaf": true,
+            "size": 5
+          },
+          {
+            "leaf": true,
+            "size": 5
+          },
+          {
+            "leaf": true,
+            "size": 5
+          },
+          {
+            "leaf": false,
+            "feature": 5,
+            "split": -1.2817,
+            "left": {
+              "leaf": true,
+              "size": 1
+            },
+            "right": {
+              "leaf": true,
+              "size": 4
+            }
+          },
+          {
+            "leaf": false,
+            "feature": 5,
+            "split": 0.8525,
+            "left": {
+              "leaf": true,
+              "size": 4
+            },
+            "right": {
+              "leaf": true,
+              "size": 1
+            }
+          },
+          {
+            "leaf": true,
+            "size": 5
+          },
+          {
+            "leaf": false,
+            "feature": 4,
+            "split": 0.3071,
+            "left": {
+              "leaf": true,
+              "size": 3
+            },
+            "right": {
+              "leaf": true,
+              "size": 2
+            }
+          },
+          {
+            "leaf": true,
+            "size": 5
+          },
+          {
+            "leaf": false,
+            "feature": 5,
+            "split": 0.1832,
+            "left": {
+              "leaf": true,
+              "size": 3
+            },
+            "right": {
+              "leaf": true,
+              "size": 2
+            }
+          },
+          {
+            "leaf": true,
+            "size": 5
+          },
+          {
+            "leaf": true,
+            "size": 5
+          },
+          {
+            "leaf": true,
+            "size": 5
+          },
+          {
+            "leaf": false,
+            "feature": 5,
+            "split": 0.8693,
+            "left": {
+              "leaf": true,
+              "size": 4
+            },
+            "right": {
+              "leaf": true,
+              "size": 1
+            }
+          },
+          {
+            "leaf": true,
+            "size": 5
+          },
+          {
+            "leaf": false,
+            "feature": 6,
+            "split": -0.4523,
+            "left": {
+              "leaf": true,
+              "size": 1
+            },
+            "right": {
+              "leaf": true,
+              "size": 4
+            }
+          },
+          {
+            "leaf": true,
+            "size": 5
+          },
+          {
+            "leaf": false,
+            "feature": 5,
+            "split": 0.5355,
+            "left": {
+              "leaf": true,
+              "size": 4
+            },
+            "right": {
+              "leaf": true,
+              "size": 1
+            }
+          }
+        ]
+      },
+      "lastTrained": "2026-08-26T21:50:21.305223+00:00",
+      "derivation": "per_api_empirical_v1.1.0"
+    },
+    "api.catalog-service.io": {
+      "sampleCount": 5,
+      "coreFields": [
+        "id",
+        "name",
+        "price",
+        "status"
+      ],
+      "mean": [
+        4.0,
+        0.0,
+        0.0,
+        0.0,
+        7.16,
+        4.16,
+        3.0,
+        11.32,
+        0.0,
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "std": [
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.8952,
+        0.9281,
+        1.4142,
+        1.1513,
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "forest": {
+        "sampleSize": 5,
+        "trees": [
+          {
+            "leaf": false,
+            "feature": 7,
+            "split": -0.4349,
+            "left": {
+              "leaf": true,
+              "size": 2
+            },
+            "right": {
+              "leaf": true,
+              "size": 3
+            }
+          },
+          {
+            "leaf": true,
+            "size": 5
+          },
+          {
+            "leaf": true,
+            "size": 5
+          },
+          {
+            "leaf": true,
+            "size": 5
+          },
+          {
+            "leaf": true,
+            "size": 5
+          },
+          {
+            "leaf": true,
+            "size": 5
+          },
+          {
+            "leaf": true,
+            "size": 5
+          },
+          {
+            "leaf": false,
+            "feature": 7,
+            "split": 1.4443,
+            "left": {
+              "leaf": true,
+              "size": 4
+            },
+            "right": {
+              "leaf": true,
+              "size": 1
+            }
+          },
+          {
+            "leaf": true,
+            "size": 5
+          },
+          {
+            "leaf": true,
+            "size": 5
+          },
+          {
+            "leaf": true,
+            "size": 5
+          },
+          {
+            "leaf": true,
+            "size": 5
+          },
+          {
+            "leaf": false,
+            "feature": 7,
+            "split": 0.0329,
+            "left": {
+              "leaf": true,
+              "size": 3
+            },
+            "right": {
+              "leaf": true,
+              "size": 2
+            }
+          },
+          {
+            "leaf": true,
+            "size": 5
+          },
+          {
+            "leaf": false,
+            "feature": 4,
+            "split": 0.1067,
+            "left": {
+              "leaf": true,
+              "size": 3
+            },
+            "right": {
+              "leaf": true,
+              "size": 2
+            }
+          },
+          {
+            "leaf": true,
+            "size": 5
+          },
+          {
+            "leaf": false,
+            "feature": 6,
+            "split": -0.3364,
+            "left": {
+              "leaf": true,
+              "size": 2
+            },
+            "right": {
+              "leaf": true,
+              "size": 3
+            }
+          },
+          {
+            "leaf": true,
+            "size": 5
+          },
+          {
+            "leaf": false,
+            "feature": 6,
+            "split": -0.2337,
+            "left": {
+              "leaf": true,
+              "size": 2
+            },
+            "right": {
+              "leaf": true,
+              "size": 3
+            }
+          },
+          {
+            "leaf": true,
+            "size": 5
+          },
+          {
+            "leaf": true,
+            "size": 5
+          },
+          {
+            "leaf": false,
+            "feature": 4,
+            "split": 1.0551,
+            "left": {
+              "leaf": true,
+              "size": 4
+            },
+            "right": {
+              "leaf": true,
+              "size": 1
+            }
+          },
+          {
+            "leaf": true,
+            "size": 5
+          },
+          {
+            "leaf": true,
+            "size": 5
+          },
+          {
+            "leaf": false,
+            "feature": 5,
+            "split": 0.5674,
+            "left": {
+              "leaf": true,
+              "size": 3
+            },
+            "right": {
+              "leaf": true,
+              "size": 2
+            }
+          }
+        ]
+      },
+      "lastTrained": "2026-08-26T21:33:43.340458+00:00",
+      "derivation": "per_api_empirical_v1.1.0"
     }
   }
 }
