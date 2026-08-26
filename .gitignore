@@ -3,6 +3,11 @@ logs/
 runtime/
 *.log
 
+# Testing & Cache
+.pytest_cache/
+.coverage
+htmlcov/
+
 # Python
 __pycache__/
 *.py[cod]

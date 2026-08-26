@@ -1,6 +1,6 @@
 apiris:
   enable_ai: true
-  integrity_threshold: 0.25
+  integrity_threshold: 0.40
   availability_threshold: 0.40
   anomaly_threshold: 0.70
   mode: enforce

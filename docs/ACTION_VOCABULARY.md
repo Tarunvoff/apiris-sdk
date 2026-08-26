@@ -67,3 +67,18 @@ Level 4: reject_response
 To prevent decision flapping on borderline noisy traffic (e.g. score oscillating between 0.39 and 0.41), Apiris applies a **hysteresis band** (`hysteresis_band = 0.05`):
 - Entering an escalated action requires `score < threshold`.
 - Recovering back to `pass_through` requires `score >= threshold + hysteresis_band`.
+
+---
+
+## Holistic Risk Classification Tiers
+
+Apiris evaluates multi-dimensional signal severity across CAD pillars, HTTP response codes, and security factors to classify traffic into five standardized operational risk tiers:
+
+| Risk Tier | Visual Badge | Operational Definition & Criteria | Example Scenarios |
+|---|---|---|---|
+| **LOW** | `✓ LOW` (Green) | All CIA scores nominal ($\ge 0.40$), `pass_through` action, 0 negative security factors. | Clean, healthy 200 OK traffic with consistent schema. |
+| **MODERATE** | `⚠ MODERATE` (Yellow) | Single isolated non-critical signal (e.g. 1 cookie header exposure on 200 OK, pacing delay, or single-dimension threshold dip). | `api.weather.gov` returning `Set-Cookie` header. |
+| **ELEVATED** | `▲ ELEVATED` (Orange) | Two non-critical warning signals (e.g. 2 exposed headers like Cookie + Auth header), cache fallback (`serve_stale_cache`), or moderate latency jitter. | Response exposing multiple tracking/auth headers or cached fallback. |
+| **HIGH** | `✗ HIGH` (Red) | Substantial single-pillar breach (e.g. multiple credentials/auth hints leaked), or multi-pillar degradation without hard failure. | Response leaking multiple auth keys or verbose debug traceback. |
+| **CRITICAL** | `🚨 CRITICAL` (White on Red) | Multi-pillar degradation + HTTP 4xx/5xx failure, $\ge 4$ distinct security factors, or hard block (`reject_response`). | `api.nasa.gov` 403 Forbidden with missing key, auth hints, and stack traces. |
+

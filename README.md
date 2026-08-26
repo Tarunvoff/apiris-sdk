@@ -142,11 +142,34 @@ Application → ApirisClient → Interceptor → [Predictive | Anomaly | Tradeof
 | Decision Engine | 2.5ms | 0.2-1.0% |
 | **Total** | **~4ms** | **<2% typical API latency** |
 
-## CLI
+## CLI Command Reference
+
+Apiris provides a rich, unified terminal command-line interface with standardized risk color grading, factor trees, and diagnostic tools:
 
 ```bash
-apiris cve openai                    # Check vulnerabilities
-apiris policy validate config.yaml   # Validate configuration
+# 1. System Status & Verification
+apiris version                                  # Display version and banner
+apiris status                                   # Inspect runtime health and offline model assets
+apiris doctor                                   # CI-usable deep diagnostic check (config, models, CVE data)
+
+# 2. Live API Health Evaluation
+apiris check https://api.weather.gov            # Live CAD triad analysis and risk verdict
+apiris check https://api.openai.com/v1/models -v # Verbose evaluation with full factor tree
+
+# 3. Decision Engine Benchmarks & Calibration
+apiris benchmark                                # Run corpus benchmark with p50/p95 pipeline latency
+apiris calibrate                                # Compute empirical threshold diff against traffic corpus
+apiris calibrate --apply                        # Compute and write calibrated thresholds to config.yaml
+apiris report --format md                       # Generate or refresh calibration report
+
+# 4. Contextual Anomaly Models
+apiris models list                              # List per-API models (Trained vs. Global Fallback)
+apiris models train api.stripe.com -s data.json # Train per-API Isolation Forest from sample traffic
+
+# 5. Drift Analysis & CVE Advisories
+apiris drift api.payments.net --window 5        # Analyze temporal CAD reliability & schema drift
+apiris cve ghost                                # Query offline CVE security advisory for vendor
+apiris cve --list-vendors                       # List all 47 tracked vendors in CVE database
 ```
 
 ## License

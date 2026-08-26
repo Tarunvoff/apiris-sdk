@@ -120,7 +120,7 @@ class DecisionEngine:
             int(bool(availability.get("rateLimited")))
             + int(bool(availability.get("timeoutError")))
             + int(bool(availability.get("softTimeoutExceeded")))
-            + int(bool(availability.get("status") and availability.get("status") >= 500))
+            + int(bool(availability.get("status") and availability.get("status") >= 400))
             + int(bool(availability.get("latencyMs", 0) > profile["latency_budget_ms"]))
         )
 
@@ -203,12 +203,14 @@ class DecisionEngine:
         # Availability factors
         latency_ms = availability.get("latencyMs", 0)
         if latency_ms:
-            factors["availability_factors"].append({
+            factor_entry = {
                 "name": "Response Latency",
                 "value": f"{latency_ms}ms",
                 "impact": "negative" if latency_ms > profile["latency_budget_ms"] else "neutral",
-                "budget": f"{profile['latency_budget_ms']}ms"
-            })
+            }
+            if latency_ms > profile["latency_budget_ms"]:
+                factor_entry["budget"] = f"{profile['latency_budget_ms']}ms"
+            factors["availability_factors"].append(factor_entry)
         
         if availability.get("rateLimited"):
             factors["availability_factors"].append({
@@ -232,9 +234,9 @@ class DecisionEngine:
             })
         
         status = availability.get("status")
-        if status and status >= 500:
+        if status and status >= 400:
             factors["availability_factors"].append({
-                "name": "Server Error",
+                "name": "HTTP Client Error" if status < 500 else "HTTP Server Error",
                 "value": f"HTTP {status}",
                 "impact": "negative"
             })
@@ -298,6 +300,8 @@ class DecisionEngine:
             "C_score": self._compute_score(confidentiality_rate, profile["confidentiality_weight"]),
             "A_score": self._compute_score(availability_rate, profile["availability_weight"]),
             "D_score": self._compute_score(integrity_rate, profile["integrity_weight"]),
+            "confidentialityRate": confidentiality_rate,
+            "availabilityRate": availability_rate,
             "integrityRate": integrity_rate,
         }
 
@@ -316,14 +320,20 @@ class DecisionEngine:
         a_score = scores["A_score"]
         d_score = scores["D_score"]
 
-        c_thresh = profile.get("confidentiality_threshold") if profile.get("confidentiality_threshold") is not None else 0.0
-        a_thresh = profile.get("availability_threshold") if profile.get("availability_threshold") is not None else 0.0
-        d_thresh = profile.get("integrity_threshold") if profile.get("integrity_threshold") is not None else 0.0
-        delay_thresh = profile.get("availability_delay_threshold") if profile.get("availability_delay_threshold") is not None else a_thresh
-        h_band = profile.get("hysteresis_band", 0.05) if not getattr(self.config, "strict_zero_tolerance", False) else 0.0
+        c_thresh = profile.get("confidentiality_threshold", 0.40)
+        a_thresh = profile.get("availability_threshold", 0.40)
+        d_thresh = profile.get("integrity_threshold", 0.40)
+        delay_thresh = profile.get("availability_delay_threshold", 0.70)
+        h_band = profile.get("hysteresis_band", 0.05)
 
         if self.config.mode == "strict":
             strict_action = self._enforce_integrity_priority(scores, profile)
+            if strict_action:
+                return strict_action
+
+        # In strict zero tolerance mode, any non-zero drop trips protection immediately
+        if profile.get("strict_zero_tolerance"):
+            strict_action = self._choose_action_strict(scores, profile)
             if strict_action:
                 return strict_action
 
@@ -379,31 +389,56 @@ class DecisionEngine:
         def clamp(value: float, low: float = 0.0, high: float = 1.0) -> float:
             return max(low, min(high, value))
 
-        c_thresh = profile.get("confidentiality_threshold") if profile.get("confidentiality_threshold") is not None else 0.40
-        a_thresh = profile.get("availability_threshold") if profile.get("availability_threshold") is not None else 0.40
-        d_thresh = profile.get("integrity_threshold") if profile.get("integrity_threshold") is not None else 0.40
+        c_thresh = profile.get("confidentiality_threshold", 0.40)
+        a_thresh = profile.get("availability_threshold", 0.40)
+        d_thresh = profile.get("integrity_threshold", 0.40)
 
         c_score = scores.get("C_score", 1.0)
         a_score = scores.get("A_score", 1.0)
         d_score = scores.get("D_score", 1.0)
 
-        # Distances from decision boundaries
-        c_dist = abs(c_score - c_thresh)
-        a_dist = abs(a_score - a_thresh)
-        d_dist = abs(d_score - d_thresh)
+        c_breach = max(0.0, c_thresh - c_score)
+        a_breach = max(0.0, a_thresh - a_score)
+        d_breach = max(0.0, d_thresh - d_score)
 
-        min_dist = min(c_dist, a_dist, d_dist)
-        margin = 0.30  # Normalizing distance margin
+        c_clear = max(0.0, c_score - c_thresh)
+        a_clear = max(0.0, a_score - a_thresh)
+        d_clear = max(0.0, d_score - d_thresh)
 
-        # Base confidence scales smoothly from 0.50 (on the boundary) to 1.00 (far from boundary)
-        cad_confidence = 0.50 + 0.50 * clamp(min_dist / margin)
+        if action == "pass_through":
+            # Clean traffic certainty is bounded by the smallest clearance above threshold
+            min_clearance = min(c_clear, a_clear, d_clear)
+            margin = 0.40
+            cad_confidence = 0.50 + 0.50 * clamp(min_clearance / margin)
+        else:
+            # Escalated protective action certainty reflects:
+            # 1. Primary breach depth relative to threshold
+            # 2. Multi-dimensional reinforcement (failing in >1 pillar increases escalation certainty)
+            # 3. Raw signal intensity (e.g. 1 isolated header leak vs 3+ critical secrets)
+            c_rate = scores.get("confidentialityRate", 1.0 if c_breach > 0 else 0.0)
+            a_rate = scores.get("availabilityRate", 1.0 if a_breach > 0 else 0.0)
+            d_rate = scores.get("integrityRate", 1.0 if d_breach > 0 else 0.0)
+
+            max_breach = max(c_breach, a_breach, d_breach)
+            max_thresh = max(0.01, max(c_thresh, a_thresh, d_thresh))
+            breach_depth_ratio = clamp(max_breach / max_thresh)
+
+            # Number of breaching dimensions
+            failing_dims = sum(1 for b in [c_breach, a_breach, d_breach] if b > 0.0)
+            dim_reinforcement = 0.10 * max(0, failing_dims - 1)
+
+            # Signal intensity across pillars
+            max_rate = max(c_rate, a_rate, d_rate)
+            signal_intensity = clamp((max_rate - 1.0) * 0.075, 0.0, 0.15)
+
+            cad_confidence = 0.60 + 0.25 * breach_depth_ratio + dim_reinforcement + signal_intensity
 
         if ai_used:
             ai_avg = float(scores_with_ai.get("aiAnomalyAvg", 0.0))
-            ai_thresh = getattr(self.config, "anomaly_threshold", 0.70)
+            ai_thresh = profile.get("anomaly_threshold", 0.70)
             ai_dist = abs(ai_avg - ai_thresh)
-            ai_confidence = 0.50 + 0.50 * clamp(ai_dist / margin)
-            total_confidence = 0.70 * cad_confidence + 0.30 * ai_confidence
+            ai_confidence = 0.50 + 0.50 * clamp(ai_dist / 0.30)
+            total_confidence = 0.75 * cad_confidence + 0.25 * ai_confidence
         else:
             total_confidence = cad_confidence
 
