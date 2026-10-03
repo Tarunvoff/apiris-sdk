@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [1.1.1] - 2026-10-03
+## [1.1.2] - 2026-10-03
 
 ### Changed
 - Updated package metadata, maintainer details (Tarun V), portfolio link, and LinkedIn profile.
