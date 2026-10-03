@@ -602,7 +602,7 @@ pip install apiris
 ### Install from Source
 
 ```bash
-git clone https://github.com/yourusername/Apiris.git
+git clone https://github.com/Tarunvoff/apiris-sdk.git
 cd Apiris
 pip install -e .
 ```
@@ -708,7 +708,7 @@ We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guid
 ### Development Setup
 
 ```bash
-git clone https://github.com/yourusername/Apiris.git
+git clone https://github.com/Tarunvoff/apiris-sdk.git
 cd Apiris
 python -m venv venv
 source venv/bin/activate  # Windows: venv\Scripts\activate
@@ -734,8 +734,8 @@ MIT License - see [LICENSE](LICENSE) file for details.
 ## Support
 
 - **Documentation**: [https://apiris.readthedocs.io](https://apiris.readthedocs.io)
-- **Issues**: [GitHub Issues](https://github.com/yourusername/Apiris/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourusername/Apiris/discussions)
+- **Issues**: [GitHub Issues](https://github.com/Tarunvoff/apiris-sdk/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/Tarunvoff/apiris-sdk/discussions)
 - **Email**: support@Apiris.dev
 
 ---

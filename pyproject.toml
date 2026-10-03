@@ -1,15 +1,42 @@
 [project]
 name = "apiris"
-version = "1.1.0"
+version = "1.1.1"
 description = "Apiris - Deterministic AI Reliability Intelligence SDK"
 readme = "README.md"
 requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+authors = [
+  { name = "Tarun V" }
+]
+maintainers = [
+  { name = "Tarun V" }
+]
+keywords = [
+  "ai-reliability",
+  "api-security",
+  "agentic-ai",
+  "drift-detection",
+  "anomaly-detection",
+  "triad-monitoring",
+  "offline-first",
+  "sdk",
+  "cli"
+]
 dependencies = [
   "pyyaml==6.0.2",
   "requests==2.32.3",
   "rich==13.7.0",
   "typer>=0.15.1",
 ]
+
+[project.urls]
+Homepage = "https://github.com/Tarunvoff/apiris-sdk"
+Documentation = "https://github.com/Tarunvoff/apiris-sdk#readme"
+Repository = "https://github.com/Tarunvoff/apiris-sdk"
+"Issue Tracker" = "https://github.com/Tarunvoff/apiris-sdk/issues"
+Changelog = "https://github.com/Tarunvoff/apiris-sdk/blob/main/CHANGELOG.md"
+Portfolio = "https://tarun-portfolio-ai.vercel.app/"
+LinkedIn = "https://www.linkedin.com/in/tarun-v-sece"
 
 [project.scripts]
 apiris = "apiris.cli:main"
